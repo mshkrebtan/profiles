@@ -11,7 +11,7 @@ export PATH="/usr/local/sbin:${PATH}"
 # Autocompletion
 if [ -f $(brew --prefix)/etc/bash_completion ]; then
     . $(brew --prefix)/etc/bash_completion
-  fi
+fi
 
 # One-time symlink for airport utility
 if [[ ! -f /usr/local/bin/airport ]]; then
@@ -33,6 +33,3 @@ export PATH=/Library/Developer/Toolchains/swift-latest.xctoolchain/usr/bin:"${PA
 
 # Python autocomplete
 export PYTHONSTARTUP=~/.pythonrc
-
-# Docker
-eval $(docker-machine env)
