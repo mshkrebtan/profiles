@@ -5,9 +5,8 @@ echo "Welcome back, $USERNAME"
 # EXPORTS
 #########
 
-# Adding my own applications folder to PATH.
-# To let the apps be executed by other users symlink everythnig to /usr/local/bin.
-export PATH=~/Applications/bin:"${PATH}"
+# Default editor
+export EDITOR=vim
 
 # Homebrew requirement
 export PATH="/usr/local/sbin:${PATH}"
@@ -15,8 +14,9 @@ export PATH="/usr/local/sbin:${PATH}"
 # Swift (open source)
 export PATH=/Library/Developer/Toolchains/swift-latest.xctoolchain/usr/bin:"${PATH}"
 
-# Default editor
-export EDITOR=nano
+# Adding my own applications folder to PATH.
+# To let the apps be executed by other users symlink everythnig to /usr/local/bin.
+export PATH=~/Applications/bin:"${PATH}"
 
 # Python autocompletion
 export PYTHONSTARTUP=~/.pythonrc
