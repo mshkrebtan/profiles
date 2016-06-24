@@ -21,6 +21,8 @@ Plugin 'rodjek/vim-puppet'
 Plugin 'godlygeek/tabular'
 Plugin 'ntpeters/vim-better-whitespace'
 Plugin 'ervandew/supertab'
+Plugin 'plasticboy/vim-markdown'
+Plugin 'JamshedVesuna/vim-markdown-preview'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -62,4 +64,8 @@ highlight lCursor guifg=NONE guibg=Cyan
 set number
 set spelllang=ru_yo,en_us
 
+" To reduce ESC key delay
 set ttimeoutlen=10
+
+" vim-markdown
+let g:vim_markdown_folding_disabled = 1
