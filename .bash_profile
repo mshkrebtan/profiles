@@ -1,4 +1,9 @@
 USERNAME="Maxie"
+
+if [[ -z $USERNAME ]]; then
+	USERNAME=$(id -F)
+fi
+
 echo "Welcome back, $USERNAME"
 
 #########
