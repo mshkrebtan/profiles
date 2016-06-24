@@ -12,14 +12,17 @@ export EDITOR=vim
 export PATH="/usr/local/sbin:${PATH}"
 
 # Swift (open source)
-export PATH=/Library/Developer/Toolchains/swift-latest.xctoolchain/usr/bin:"${PATH}"
+export PATH="/Library/Developer/Toolchains/swift-latest.xctoolchain/usr/bin:${PATH}"
 
 # Adding my own applications folder to PATH.
 # To let the apps be executed by other users symlink everythnig to /usr/local/bin.
-export PATH=~/Applications/bin:"${PATH}"
+export PATH="~/Applications/bin:${PATH}"
 
 # Python autocompletion
 export PYTHONSTARTUP=~/.pythonrc
+
+# Ruby gems
+export PATH="~/.gem/ruby/2.0.0/bin:${PATH}"
 
 ######################
 # OTHER CUSTOMIZATIONS

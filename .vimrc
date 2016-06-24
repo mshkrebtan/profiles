@@ -60,4 +60,6 @@ set imsearch=0
 highlight lCursor guifg=NONE guibg=Cyan
 
 set number
-set spell spelllang=ru_yo,en_us
+set spelllang=ru_yo,en_us
+
+set ttimeoutlen=10
