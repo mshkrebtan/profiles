@@ -54,6 +54,9 @@ endif
 " vim-ariline
 set laststatus=2
 let g:airline_powerline_fonts = 1
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#left_sep = ' '
+let g:airline#extensions#tabline#left_alt_sep = '|'
 
 " Russian keymap
 set keymap=russian-jcukenmac
@@ -62,6 +65,12 @@ set imsearch=0
 highlight lCursor guifg=NONE guibg=Cyan
 
 set number
+
+set colorcolumn=80
+set linebreak
+let &showbreak = '+++ '
+set cpoptions+=n
+
 set spelllang=ru_yo,en_us
 
 " To reduce ESC key delay
