@@ -1,7 +1,7 @@
 USERNAME="Maxie"
 
 if [[ -z $USERNAME ]]; then
-	USERNAME=$(id -F)
+  USERNAME=$(id -F)
 fi
 
 echo "Welcome back, $USERNAME"
@@ -41,3 +41,5 @@ fi
 # Aliases for colored ls output
 alias ls="ls -1pG"
 alias ll="ls -lapGh"
+alias darkmode="export THEME=dark"
+alias lightmode="export THEME=light"

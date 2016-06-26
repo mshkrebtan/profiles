@@ -12,7 +12,10 @@ Plugin 'VundleVim/Vundle.vim'
 
 Plugin 'chriskempson/tomorrow-theme', {'rtp': 'vim/'}
 Plugin 'wombat256.vim'
+Plugin 'tomasr/molokai'
+Plugin 'sickill/vim-monokai'
 Plugin 'altercation/vim-colors-solarized'
+Plugin 'morhetz/gruvbox'
 
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
@@ -23,6 +26,7 @@ Plugin 'ntpeters/vim-better-whitespace'
 Plugin 'ervandew/supertab'
 Plugin 'plasticboy/vim-markdown'
 Plugin 'JamshedVesuna/vim-markdown-preview'
+Plugin 'scrooloose/nerdcommenter'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -39,24 +43,22 @@ filetype plugin indent on    " required
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
 
-" colors
-colorscheme Tomorrow
-"colorscheme wombat256mod
-"colorscheme solarized
-set background=light
-let g:solarized_termcolors=256
+" Plugin: vim-ariline
+set laststatus=2
+let g:airline_powerline_fonts = 1
 
+"let g:airline#extensions#tabline#enabled = 1
+"let g:airline#extensions#tabline#left_sep = ' '
+"let g:airline#extensions#tabline#left_alt_sep = '|'
+
+" Plugin: vim-markdown
+let g:vim_markdown_folding_disabled = 1
+
+" Enable syntax (coloring)
 if &t_Co > 2 || has("gui_running")
   syntax on
   set hlsearch
 endif
-
-" vim-ariline
-set laststatus=2
-let g:airline_powerline_fonts = 1
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#left_sep = ' '
-let g:airline#extensions#tabline#left_alt_sep = '|'
 
 " Russian keymap
 set keymap=russian-jcukenmac
@@ -66,15 +68,29 @@ highlight lCursor guifg=NONE guibg=Cyan
 
 set number
 
+" 80 character line length is just the thing
 set colorcolumn=80
+
+" Wrap lines gracefully
 set linebreak
+
+" Show which lines are wrapped in the number column
 let &showbreak = '+++ '
 set cpoptions+=n
 
+" Languages for spell check
 set spelllang=ru_yo,en_us
 
-" To reduce ESC key delay
+" Reducing mode switching delay
 set ttimeoutlen=10
 
-" vim-markdown
-let g:vim_markdown_folding_disabled = 1
+" Themes are: solarized, tomorrow, molokai, monokai,  wombat256mod, gruvbox
+if $THEME == 'dark'
+  let g:solarized_termcolors=256
+  "colorscheme wombat256mod " Very cool!
+  colorscheme gruvbox
+  set background=dark
+else
+  set background=light
+  colorscheme Tomorrow
+endif
