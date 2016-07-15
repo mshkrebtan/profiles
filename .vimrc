@@ -54,6 +54,9 @@ let g:airline_powerline_fonts = 1
 " Plugin: vim-markdown
 let g:vim_markdown_folding_disabled = 1
 
+" Plugin: nerdcommenter
+let g:NERDDefaultAlign = 'left'
+
 " Enable syntax (coloring)
 if &t_Co > 2 || has("gui_running")
   syntax on
@@ -69,7 +72,9 @@ highlight lCursor guifg=NONE guibg=Cyan
 set number
 
 " 80 character line length is just the thing
-set colorcolumn=80
+if version >= 703
+  set colorcolumn=80
+endif
 
 " Wrap lines gracefully
 set linebreak
