@@ -21,12 +21,14 @@ Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 
 Plugin 'rodjek/vim-puppet'
+Plugin 'vim-ruby/vim-ruby'
 Plugin 'godlygeek/tabular'
 Plugin 'ntpeters/vim-better-whitespace'
 Plugin 'ervandew/supertab'
 Plugin 'plasticboy/vim-markdown'
 Plugin 'JamshedVesuna/vim-markdown-preview'
 Plugin 'scrooloose/nerdcommenter'
+Plugin 'majutsushi/tagbar'             " A class outline viewer for Vim
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required

@@ -39,7 +39,17 @@ if [ -f $(brew --prefix)/etc/bash_completion ]; then
 fi
 
 # Aliases for colored ls output
-alias ls="ls -1pG"
-alias ll="ls -lapGh"
+alias ls="ls -G"
+alias ll="ls -alpGh"
+alias la="ls -1pA"
+alias l="ls -1p"
+
 alias darkmode="export THEME=dark"
 alias lightmode="export THEME=light"
+
+alias escape="sed 's/\ /\\\ /g; s/[(]/\\\(/g; s/[)]/\\\)/g; s/\[/\\\[/g; s/\]/\\\]/g'"
+
+#color_prompt=yes
+if [ -n "$color_prompt" ]; then
+  export PS1='\033[00m\]\h:\033[00;34m\]\W \[\033[00m\]\u\033[00m\]\$ '
+fi
