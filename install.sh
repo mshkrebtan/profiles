@@ -3,6 +3,9 @@
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 # Vim
+# Install Vundle first
+git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+
 ln -s ${DIR}/vim/.vimrc ${HOME}
 
 mkdir -p ${HOME}/.vim/keymap
