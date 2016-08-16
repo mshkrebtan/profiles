@@ -12,6 +12,7 @@ packages:
 runcmd:
   - sed -i -e '/^PermitRootLogin/s/^.*$/PermitRootLogin no/' /etc/ssh/sshd_config
   - restart ssh
-  - echo "Do not forget to set password with 'sudo passwd $USER' and edit or remove /etc/sudoers.d/90-cloud-init-users" >> /etc/motd
+  - echo -e "\nDo not forget to set password with 'sudo passwd' and edit (with visudo -f) or remove /etc/sudoers.d/90-cloud-init-users file." >> /etc/motd
   - su - mshkrebtan -c "git clone https://github.com/mshkrebtan/profiles.git ~/.profiles"
   - su - mshkrebtan -c "~/.profiles/install.sh"
+  - ln -s ~mshkrebtan/.profiles/ ~/
