@@ -68,7 +68,9 @@ if &t_Co > 2 || has("gui_running")
 endif
 
 " Russian keymap
-set keymap=russian-jcukenmac
+if filereadable(expand("~/.vim/keymap/russian-jcukenmac.vim"))
+  set keymap=russian-jcukenmac
+endif
 set iminsert=0
 set imsearch=0
 highlight lCursor guifg=NONE guibg=Cyan
@@ -87,6 +89,11 @@ set linebreak
 let &showbreak = '+++ '
 set cpoptions+=n
 
+" Indentation without hard tabs
+set expandtab
+set shiftwidth=4
+set softtabstop=4
+
 " Languages for spell check
 set spelllang=ru_yo,en_us
 
@@ -101,5 +108,7 @@ if $THEME == 'dark'
   set background=dark
 else
   set background=light
-  colorscheme Tomorrow
+  if filereadable(expand("~/.vim/bundle/tomorrow-theme/vim/colors/Tomorrow.vim"))
+    colorscheme Tomorrow
+  endif
 endif

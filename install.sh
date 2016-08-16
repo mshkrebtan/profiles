@@ -8,6 +8,10 @@ git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 
 ln -s ${DIR}/vim/.vimrc ${HOME}
 
+# Now install the plugins
+vim +PluginInstall +qall
+
+# Finally, create symlinks
 mkdir -p ${HOME}/.vim/keymap
 mkdir -p ${HOME}/.vim/bundle/tabular/after/plugin/
 
