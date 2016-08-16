@@ -22,6 +22,8 @@ Plugin 'vim-airline/vim-airline-themes'
 
 Plugin 'rodjek/vim-puppet'
 Plugin 'vim-ruby/vim-ruby'
+Plugin 'avakhov/vim-yaml'
+
 Plugin 'godlygeek/tabular'
 Plugin 'ntpeters/vim-better-whitespace'
 Plugin 'ervandew/supertab'
