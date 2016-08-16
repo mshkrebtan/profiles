@@ -1,1 +1,5 @@
-PS1='${debian_chroot:+($debian_chroot)}\H:\[\033[2;34m\]\W\[\033[0m\] \u\$ '
+PS1='${debian_chroot:+($debian_chroot)}\H:\[\033[34m\]\W\[\033[0m\] \u\$ '
+
+export TMUX_THEME=tomorrow
+
+export PYTHONSTARTUP=~/.pythonrc

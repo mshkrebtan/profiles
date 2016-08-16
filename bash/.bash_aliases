@@ -4,3 +4,6 @@ alias l='ls -1Fp'
 
 alias pbcopy='xclip -selection clipboard'
 alias pbpaste='xclip -selection clipboard -o'
+
+alias darkmode="export THEME=dark TMUX_THEME=tomorrow-night"
+alias lightmode="export THEME=light TMUX_THEME=tomorrow"
