@@ -2,4 +2,6 @@ if [ -f ~/.bashrc ]; then
    . ~/.bashrc;
 fi
 
-PS1='${debian_chroot:+($debian_chroot)}\h:\W \u\$ '
+if [ -f ~/.bash_tweaks ]; then
+   . ~/.bash_tweaks
+fi
