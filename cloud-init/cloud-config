@@ -9,7 +9,6 @@ users:
 packages:
   - git
   - vim
-  - tmux
 runcmd:
   - sed -i -e '/^PermitRootLogin/s/^.*$/PermitRootLogin no/' /etc/ssh/sshd_config
   - restart ssh
