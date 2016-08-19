@@ -95,6 +95,9 @@ set expandtab
 set shiftwidth=4
 set softtabstop=4
 
+" Comfortable backspace behaviour
+set backspace=indent,eol,start
+
 " Languages for spell check
 set spelllang=ru_yo,en_us
 
