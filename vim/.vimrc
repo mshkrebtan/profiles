@@ -31,6 +31,7 @@ Plugin 'plasticboy/vim-markdown'
 Plugin 'JamshedVesuna/vim-markdown-preview'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'majutsushi/tagbar'             " A class outline viewer for Vim
+Plugin 'ctrlpvim/ctrlp.vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
