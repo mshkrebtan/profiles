@@ -59,6 +59,11 @@ let g:airline_powerline_fonts = 1
 " Plugin: vim-markdown
 let g:vim_markdown_folding_disabled = 1
 
+" Plugin: vim-markdown-preview
+let vim_markdown_preview_hotkey='<C-m>'
+let vim_markdown_preview_github=1
+let vim_markdown_preview_toggle=0
+
 " Plugin: nerdcommenter
 let g:NERDDefaultAlign = 'left'
 
@@ -98,8 +103,9 @@ set softtabstop=4
 " Comfortable backspace behaviour
 set backspace=indent,eol,start
 
-" Languages for spell check
+" Spell check
 set spelllang=ru_yo,en_us
+autocmd FileType gitcommit,md,markdown setlocal spell
 
 " Reducing mode switching delay
 set ttimeoutlen=10
