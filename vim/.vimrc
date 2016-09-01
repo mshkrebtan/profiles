@@ -29,6 +29,7 @@ Plugin 'ntpeters/vim-better-whitespace'
 Plugin 'ervandew/supertab'
 Plugin 'plasticboy/vim-markdown'
 Plugin 'JamshedVesuna/vim-markdown-preview'
+Plugin 'mzlogin/vim-markdown-toc'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'majutsushi/tagbar'             " A class outline viewer for Vim
 Plugin 'ctrlpvim/ctrlp.vim'
@@ -49,6 +50,7 @@ filetype plugin indent on    " required
 " Put your non-Plugin stuff after this line
 
 " Plugin: vim-ariline
+set noshowmode
 set laststatus=2
 let g:airline_powerline_fonts = 1
 
@@ -58,6 +60,7 @@ let g:airline_powerline_fonts = 1
 
 " Plugin: vim-markdown
 let g:vim_markdown_folding_disabled = 1
+let g:vim_markdown_toc_autofit = 1
 
 " Plugin: vim-markdown-preview
 let vim_markdown_preview_hotkey='<C-L>'
@@ -66,6 +69,9 @@ let vim_markdown_preview_toggle=0
 
 " Plugin: nerdcommenter
 let g:NERDDefaultAlign = 'left'
+
+" Enable the use of the mouse
+set mouse=a
 
 " Enable syntax (coloring)
 if &t_Co > 2 || has("gui_running")
@@ -83,7 +89,10 @@ highlight lCursor guifg=NONE guibg=Cyan
 
 set number
 
-" 80 character line length is just the thing
+" Set textwidth
+au FileType gitcommit set textwidth=72
+
+" Enable a colored column
 if version >= 703
   set colorcolumn=80
 endif
