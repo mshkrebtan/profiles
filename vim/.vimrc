@@ -60,7 +60,7 @@ let g:airline_powerline_fonts = 1
 let g:vim_markdown_folding_disabled = 1
 
 " Plugin: vim-markdown-preview
-let vim_markdown_preview_hotkey='<C-m>'
+let vim_markdown_preview_hotkey='<C-L>'
 let vim_markdown_preview_github=1
 let vim_markdown_preview_toggle=0
 
