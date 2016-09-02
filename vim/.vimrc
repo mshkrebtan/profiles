@@ -54,9 +54,9 @@ set noshowmode
 set laststatus=2
 let g:airline_powerline_fonts = 1
 
-"let g:airline#extensions#tabline#enabled = 1
-"let g:airline#extensions#tabline#left_sep = ' '
-"let g:airline#extensions#tabline#left_alt_sep = '|'
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#left_sep = ' '
+let g:airline#extensions#tabline#left_alt_sep = '|'
 
 " Plugin: vim-markdown
 let g:vim_markdown_folding_disabled = 1
@@ -131,3 +131,6 @@ else
     colorscheme Tomorrow
   endif
 endif
+
+" Stop the search at the end of the file.
+set nowrapscan
