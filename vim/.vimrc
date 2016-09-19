@@ -90,9 +90,6 @@ highlight lCursor guifg=NONE guibg=Cyan
 
 set number
 
-" Set textwidth
-au FileType gitcommit set textwidth=72
-
 " Enable a colored column
 if version >= 703
   set colorcolumn=80
@@ -113,9 +110,8 @@ set softtabstop=4
 " Comfortable backspace behaviour
 set backspace=indent,eol,start
 
-" Spell check
+" Spell check language
 set spelllang=ru_yo,en_us
-autocmd FileType gitcommit,md,markdown setlocal spell
 
 " Reducing mode switching delay
 set ttimeoutlen=10
@@ -135,3 +131,14 @@ endif
 
 " Stop the search at the end of the file.
 set nowrapscan
+
+" Filetype: gitcommit
+autocmd BufRead,BufNewFile gitcommit setfiletype gitcommit
+autocmd FileType gitcommit setlocal spell
+autocmd FileType gitcommit setlocal textwidth=72
+if version >= 703
+  autocmd FileType gitcommit setlocal colorcolumn=72
+endif
+
+" Filetype: markdown
+autocmd FileType md,markdown setlocal spell
