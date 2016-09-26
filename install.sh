@@ -31,5 +31,4 @@ ln -s ${DIR}/bash/.bashrc ${HOME}/.bashrc
 ln -s ${DIR}/bash/{.bash_profile,.bash_aliases} ${HOME}
 
 # Python
-
 ln -s ${DIR}/python/.pythonrc ${HOME}
