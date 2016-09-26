@@ -27,14 +27,7 @@ ln -s ~/.profiles/vim/.vim/ftdetect/* ~/.vim/ftdetect/
 ln -s ${DIR}/tmux/{.tmux,.tmux.conf} ${HOME}
 
 # Bash
-ln -s ${DIR}/bash/{.bash_profile,.bash_aliases} ${HOME}
-
-if [ "$(uname)" == "Darwin" ]; then
-	ln -s ${DIR}/bash/.bashrc_macOS ${HOME}/.bashrc
-elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
-	ln -s ${DIR}/bash/.bashrc ${HOME}/.bashrc
-fi
+ln -s ${DIR}/bash/{.bash_profile,.bash_aliases,.bash_tweaks} ${HOME}
 
 # Python
-
 ln -s ${DIR}/python/.pythonrc ${HOME}
