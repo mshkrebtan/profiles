@@ -142,3 +142,7 @@ endif
 
 " Filetype: markdown
 autocmd FileType md,markdown setlocal spell
+
+" Filetype: text
+autocmd FileType text setlocal colorcolumn=""
+autocmd FileType text setlocal spell
