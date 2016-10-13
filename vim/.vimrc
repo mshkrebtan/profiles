@@ -34,6 +34,7 @@ Plugin 'scrooloose/nerdcommenter'
 Plugin 'majutsushi/tagbar'             " A class outline viewer for Vim
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'nginx.vim'
+Plugin 'saltstack/salt-vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
