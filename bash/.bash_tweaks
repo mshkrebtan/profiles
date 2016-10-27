@@ -3,3 +3,4 @@ export PATH="/usr/local/sbin:$PATH"
 export EDITOR=vim
 export TMUX_THEME=tomorrow
 export PYTHONSTARTUP=~/.pythonrc
+export GREP_OPTIONS='--color=auto'

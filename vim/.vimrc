@@ -51,7 +51,6 @@ filetype plugin indent on    " required
 " Put your non-Plugin stuff after this line
 
 " Plugin: vim-ariline
-set noshowmode
 set laststatus=2
 let g:airline_powerline_fonts = 1
 
