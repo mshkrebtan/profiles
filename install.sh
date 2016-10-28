@@ -28,7 +28,7 @@ ln -s ${DIR}/tmux/{.tmux,.tmux.conf} ${HOME}
 
 # Bash
 ln -s ${DIR}/bash/.bashrc ${HOME}/.bashrc
-ln -s ${DIR}/bash/{.bash_profile,.bash_aliases} ${HOME}
+ln -s ${DIR}/bash/{.bash_profile,.bash_aliases,.bash_tweaks} ${HOME}
 
 # Python
 ln -s ${DIR}/python/.pythonrc ${HOME}
