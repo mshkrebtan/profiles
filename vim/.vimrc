@@ -67,6 +67,7 @@ let g:vim_markdown_toc_autofit = 1
 let vim_markdown_preview_hotkey='<C-L>'
 let vim_markdown_preview_github=1
 let vim_markdown_preview_toggle=0
+let vim_markdown_preview_browser='Safari'
 
 " Plugin: nerdcommenter
 let g:NERDDefaultAlign = 'left'
