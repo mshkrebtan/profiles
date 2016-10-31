@@ -10,6 +10,7 @@ call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
 
+" Color Schemes
 Plugin 'chriskempson/tomorrow-theme', {'rtp': 'vim/'}
 Plugin 'wombat256.vim'
 Plugin 'tomasr/molokai'
@@ -118,16 +119,11 @@ set spelllang=ru_yo,en_us
 set ttimeoutlen=10
 
 " Themes are: solarized, tomorrow, molokai, monokai,  wombat256mod, gruvbox
+colorscheme solarized
 if $THEME == 'dark'
-  let g:solarized_termcolors=256
-  "colorscheme wombat256mod " Very cool!
-  colorscheme gruvbox
   set background=dark
 else
   set background=light
-  if filereadable(expand("~/.vim/bundle/tomorrow-theme/vim/colors/Tomorrow.vim"))
-    colorscheme Tomorrow
-  endif
 endif
 
 " Stop the search at the end of the file.
