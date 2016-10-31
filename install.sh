@@ -27,7 +27,7 @@ install_vim() {
 }
 
 # Tmux
-ln -s ${DIR}/tmux/{.tmux,.tmux.conf} ${HOME}
+ln -s ${DIR}/tmux/.tmux.conf} ${HOME}
 
 # Bash
 ln -s ${DIR}/bash/.bashrc ${HOME}/.bashrc
