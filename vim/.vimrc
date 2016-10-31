@@ -18,22 +18,25 @@ Plugin 'sickill/vim-monokai'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'morhetz/gruvbox'
 
+" vim-airline
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
-
-Plugin 'rodjek/vim-puppet'
-Plugin 'vim-ruby/vim-ruby'
-Plugin 'avakhov/vim-yaml'
 
 Plugin 'godlygeek/tabular'
 Plugin 'ntpeters/vim-better-whitespace'
 Plugin 'ervandew/supertab'
-Plugin 'plasticboy/vim-markdown'
 Plugin 'JamshedVesuna/vim-markdown-preview'
 Plugin 'mzlogin/vim-markdown-toc'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'majutsushi/tagbar'             " A class outline viewer for Vim
 Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'tpope/vim-fugitive'
+
+" Filetype support
+Plugin 'rodjek/vim-puppet'
+Plugin 'plasticboy/vim-markdown'
+Plugin 'vim-ruby/vim-ruby'
+Plugin 'avakhov/vim-yaml'
 Plugin 'nginx.vim'
 Plugin 'saltstack/salt-vim'
 
@@ -73,8 +76,20 @@ let vim_markdown_preview_toggle=0
 " Plugin: nerdcommenter
 let g:NERDDefaultAlign = 'left'
 
-" Enable the use of the mouse
-set mouse=a
+" Non-plugin settings
+" ================
+
+set number
+
+" Show which lines are wrapped in the number column
+let &showbreak = '+++ '
+set cpoptions+=n
+
+" Enable the use of the mouse if really needed
+"set mouse=a
+
+" Wrap lines gracefully
+set linebreak
 
 " Enable syntax (coloring)
 if &t_Co > 2 || has("gui_running")
@@ -82,27 +97,19 @@ if &t_Co > 2 || has("gui_running")
   set hlsearch
 endif
 
-" Russian keymap
+" Russian keymap (use C-^ to switch)
 if filereadable(expand("~/.vim/keymap/russian-jcukenmac.vim"))
-  set keymap=russian-jcukenmac
+    set keymap=russian-jcukenmac
+    " Use default keymap for insert mode and search
+    set iminsert=0
+    set imsearch=0
 endif
-set iminsert=0
-set imsearch=0
 highlight lCursor guifg=NONE guibg=Cyan
-
-set number
 
 " Enable a colored column
 if version >= 703
   set colorcolumn=80
 endif
-
-" Wrap lines gracefully
-set linebreak
-
-" Show which lines are wrapped in the number column
-let &showbreak = '+++ '
-set cpoptions+=n
 
 " Indentation without hard tabs
 set expandtab
@@ -125,21 +132,3 @@ if $THEME == 'dark'
 else
   set background=light
 endif
-
-" Stop the search at the end of the file.
-set nowrapscan
-
-" Filetype: gitcommit
-autocmd BufRead,BufNewFile gitcommit setfiletype gitcommit
-autocmd FileType gitcommit setlocal spell
-autocmd FileType gitcommit setlocal textwidth=72
-if version >= 703
-  autocmd FileType gitcommit setlocal colorcolumn=72
-endif
-
-" Filetype: markdown
-autocmd FileType md,markdown setlocal spell
-
-" Filetype: text
-autocmd FileType text setlocal colorcolumn=""
-autocmd FileType text setlocal spell

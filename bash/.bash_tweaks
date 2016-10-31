@@ -1,5 +1,8 @@
 PS1='${debian_chroot:+($debian_chroot)}$(hostname -f):\[\033[34m\]\W\[\033[0m\] \u\$ '
 
 export EDITOR=vim
-export TMUX_THEME=tomorrow
 export PYTHONSTARTUP=~/.pythonrc
+
+if [ -z ${THEME+x} ]; then
+    export THEME=light;
+fi
