@@ -2,26 +2,29 @@
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
-# Vim
-# Install Vundle first
-git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+install_vim() {
+    # Install Vundle first
+    git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 
-ln -s ${DIR}/vim/.vimrc ${HOME}
+    # Install .vimrc
+    ln -s ${DIR}/vim/.vimrc ${HOME}
 
-# Now install the plugins
-vim +PluginInstall +qall
+    # Now install the plugins
+    vim +PluginInstall +qall
 
-# Finally, create symlinks
-mkdir -p ${HOME}/.vim/keymap
-mkdir -p ${HOME}/.vim/ftdetect
-mkdir -p ${HOME}/.vim/bundle/tabular/after/plugin/
+    # Install Russian-jcukenmac keymap
+    mkdir -p ${HOME}/.vim/keymap
+    ln -sf ${DIR}/vim/.vim/keymap/russian-jcukenmac.vim \
+        ${HOME}/.vim/keymap/
 
-ln -sf ${DIR}/vim/.vim/keymap/russian-jcukenmac.vim \
-	${HOME}/.vim/keymap
-ln -s ${DIR}/vim/.vim/bundle/tabular/after/plugin/my_tabular_commands.vim \
-	${HOME}/.vim/bundle/tabular/after/plugin
+    # Install additional tabular commands
+    mkdir -p ${HOME}/.vim/bundle/tabular/after/plugin/
+    ln -s ${DIR}/vim/.vim/bundle/tabular/after/plugin/my_tabular_commands.vim \
+        ${HOME}/.vim/bundle/tabular/after/plugin/
 
-ln -s ~/.profiles/vim/.vim/ftdetect/* ~/.vim/ftdetect/
+    # Install filetype definitions
+    ln -s ${DIR}/vim/.vim/ftdetect ${HOME}/.vim/
+}
 
 # Tmux
 ln -s ${DIR}/tmux/{.tmux,.tmux.conf} ${HOME}
@@ -32,3 +35,6 @@ ln -s ${DIR}/bash/{.bash_profile,.bash_aliases,.bash_tweaks} ${HOME}
 
 # Python
 ln -s ${DIR}/python/.pythonrc ${HOME}
+
+# Vim
+install_vim

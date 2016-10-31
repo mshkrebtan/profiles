@@ -3,7 +3,7 @@ alias ll="ls -alpGh"
 alias la="ls -1pA"
 alias l="ls -1p"
 
-alias darkmode="export THEME=dark TMUX_THEME=tomorrow-night"
-alias lightmode="export THEME=light TMUX_THEME=tomorrow"
+alias theme-light="export THEME=light"
+alias theme-dark="export THEME=dark"
 
 alias escape="sed 's/\ /\\\ /g; s/[(]/\\\(/g; s/[)]/\\\)/g; s/\[/\\\[/g; s/\]/\\\]/g'"
