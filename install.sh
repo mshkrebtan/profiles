@@ -26,14 +26,22 @@ install_vim() {
     ln -s ${DIR}/vim/.vim/ftdetect ${HOME}/.vim/
 }
 
-# Tmux
-ln -s ${DIR}/tmux/.tmux.conf} ${HOME}
+install_tmux() {
+    # Install Tmux Plugin Manager
+    git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+
+    # Install .tmux.conf
+    ln -s ${DIR}/tmux/.tmux.conf ${HOME}
+}
 
 # Bash
 ln -s ${DIR}/bash/{.bash_profile,.bash_aliases,.bash_tweaks} ${HOME}
 
 # Python
 ln -s ${DIR}/python/.pythonrc ${HOME}
+
+# Tmux
+install_tmux
 
 # Vim
 install_vim
