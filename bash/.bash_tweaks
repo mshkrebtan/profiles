@@ -1,3 +1,4 @@
+export PS1="\h:\033[34m\W\033[0m \u\$ "
 export PATH="/usr/local/sbin:$PATH"
 
 export EDITOR=vim
