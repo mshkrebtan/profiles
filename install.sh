@@ -45,3 +45,6 @@ install_tmux
 
 # Vim
 install_vim
+
+# LS_COLORS
+ln -s ${DIR}/dircolors-solarized/dircolors.ansi-universal ${HOME}/.dircolors
