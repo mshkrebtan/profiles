@@ -22,15 +22,19 @@ Plugin 'morhetz/gruvbox'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 
-Plugin 'godlygeek/tabular'
+Plugin 'godlygeek/tabular' "Vim script for text filtering and alignment.
 Plugin 'ntpeters/vim-better-whitespace'
 Plugin 'ervandew/supertab'
+Plugin 'scrooloose/nerdcommenter'
+Plugin 'tpope/vim-fugitive'
+
+Plugin 'scrooloose/nerdtree' " A tree explorer plugin for vim.
+Plugin 'majutsushi/tagbar'   " A class outline viewer for Vim.
+Plugin 'ctrlpvim/ctrlp.vim'  " Fuzzy file, buffer, mru, tag, etc finder.
+
+" Markdown
 Plugin 'JamshedVesuna/vim-markdown-preview'
 Plugin 'mzlogin/vim-markdown-toc'
-Plugin 'scrooloose/nerdcommenter'
-Plugin 'majutsushi/tagbar'             " A class outline viewer for Vim
-Plugin 'ctrlpvim/ctrlp.vim'
-Plugin 'tpope/vim-fugitive'
 
 " Filetype support
 Plugin 'rodjek/vim-puppet'
@@ -39,6 +43,7 @@ Plugin 'vim-ruby/vim-ruby'
 Plugin 'avakhov/vim-yaml'
 Plugin 'nginx.vim'
 Plugin 'saltstack/salt-vim'
+Plugin 'davidhalter/jedi-vim' " Awesome Python autocompletion with VIM
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -75,6 +80,12 @@ let vim_markdown_preview_toggle=0
 
 " Plugin: nerdcommenter
 let g:NERDDefaultAlign = 'left'
+
+" Plugin: NERDTree
+map <C-n> :NERDTreeToggle<CR>
+
+" Plugin: Tagbar
+nmap <F8> :TagbarToggle<CR>
 
 " Non-plugin settings
 " ================
