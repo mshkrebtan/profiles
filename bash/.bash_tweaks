@@ -5,3 +5,7 @@ export GREP_OPTIONS='--color=auto'
 if [ -z ${THEME+x} ]; then
     export THEME=light;
 fi
+
+if [ -f $(brew --prefix)/etc/bash_completion ]; then
+    . $(brew --prefix)/etc/bash_completion
+fi
