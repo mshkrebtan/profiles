@@ -1,4 +1,4 @@
-PS1='${debian_chroot:+($debian_chroot)}$(hostname -f):\033[36m\W\033[0m \u\$ '
+PS1='${debian_chroot:+($debian_chroot)}$(hostname -f):\W \u\$ '
 
 export EDITOR=vim
 export PYTHONSTARTUP=~/.pythonrc

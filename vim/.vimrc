@@ -137,9 +137,10 @@ set spelllang=ru_yo,en_us
 set ttimeoutlen=10
 
 " Themes are: solarized, tomorrow, molokai, monokai,  wombat256mod, gruvbox
-colorscheme solarized
 if $THEME == 'dark'
-  set background=dark
+    set background=dark
 else
-  set background=light
+    set background=light
 endif
+
+colorscheme solarized
