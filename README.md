@@ -8,7 +8,7 @@ Here are my profiles for Bash, Vim, Tmux and interactive Python shell.
 bash/
 ├── .bash_aliases
 ├── .bash_profile
-├── .bash_tweaks
+└── .bash_tweaks
 ```
 
 ## Vim

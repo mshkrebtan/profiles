@@ -143,4 +143,5 @@ else
     set background=light
 endif
 
-colorscheme solarized
+"colorscheme solarized
+let g:airline_theme='base16_ocean'
