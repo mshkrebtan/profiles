@@ -1,5 +1,9 @@
-PS1='${debian_chroot:+($debian_chroot)}\[\033[01m\]$(hostname -f)\[\033[00m\]:\[\033[01;34m\]\W \[\033[00m\]\u\$ '
+# Git in Bash
+source ~/.git-prompt.sh
+GIT_PS1_SHOWDIRTYSTATE=1
+GIT_PS1_SHOWSTASHSTATE=1
 
+PS1='${debian_chroot:+($debian_chroot)}\[\033[01m\]$(hostname -f)\[\033[00m\]:\[\033[01;34m\]\W$(__git_ps1 " (%s)") \[\033[00m\]\u\$ '
 
 export EDITOR=vim
 export PYTHONSTARTUP=~/.pythonrc

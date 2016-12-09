@@ -37,6 +37,10 @@ ln -s ${DIR}/bash/.bash_profile ${HOME}
 ln -s ${DIR}/bash/.bash_aliases ${HOME}
 ln -s ${DIR}/bash/.bash_tweaks ${HOME}
 
+# Git in Bash
+curl https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh \
+    -o ${HOME}/.git-prompt.sh
+
 # Tmux
 install_tmux
 
