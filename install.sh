@@ -49,6 +49,3 @@ install_vim
 
 # Python
 ln -s ${DIR}/python/.pythonrc ${HOME}
-
-# LS_COLORS
-ln -s ${DIR}/dircolors-solarized/dircolors.ansi-universal ${HOME}/.dircolors
