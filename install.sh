@@ -41,6 +41,10 @@ ln -s ${DIR}/bash/.bash_tweaks ${HOME}
 curl https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh \
     -o ${HOME}/.git-prompt.sh
 
+# Base16 for Gnome Terminal
+git clone https://github.com/chriskempson/base16-gnome-terminal.git \
+    $HOME/.config/base16-gnome-terminal
+
 # Base16 Shell
 git clone https://github.com/chriskempson/base16-shell.git \
     $HOME/.config/base16-shell
