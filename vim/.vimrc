@@ -44,6 +44,7 @@ Plugin 'avakhov/vim-yaml'
 Plugin 'nginx.vim'
 Plugin 'saltstack/salt-vim'
 Plugin 'davidhalter/jedi-vim' " Awesome Python autocompletion with VIM
+Plugin 'groovy.vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -119,7 +120,7 @@ highlight lCursor guifg=NONE guibg=Cyan
 
 " Enable a colored column
 if version >= 703
-  set colorcolumn=80
+  set colorcolumn=79
 endif
 
 " Indentation without hard tabs
