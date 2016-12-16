@@ -7,7 +7,4 @@
 alias ll="ls -alpGh"
 alias l="ls -lpGh"
 
-alias theme-light="export THEME=light"
-alias theme-dark="export THEME=dark"
-
 alias escape="sed 's/\ /\\\ /g; s/[(]/\\\(/g; s/[)]/\\\)/g; s/\[/\\\[/g; s/\]/\\\]/g'"
