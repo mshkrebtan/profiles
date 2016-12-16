@@ -8,6 +8,5 @@ PS1='${debian_chroot:+($debian_chroot)}\[\033[01m\]$(hostname -f)\[\033[00m\]:\[
 export EDITOR=vim
 export PYTHONSTARTUP=~/.pythonrc
 
-if [ -z ${THEME+x} ]; then
-    export THEME=light;
-fi
+BASE16_SHELL=$HOME/.config/base16-shell/
+[ -n "$PS1" ] && [ -s $BASE16_SHELL/profile_helper.sh ] && eval "$($BASE16_SHELL/profile_helper.sh)"

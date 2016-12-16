@@ -17,6 +17,7 @@ Plugin 'tomasr/molokai'
 Plugin 'sickill/vim-monokai'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'morhetz/gruvbox'
+Plugin 'chriskempson/base16-vim'
 
 " vim-airline
 Plugin 'vim-airline/vim-airline'
@@ -137,12 +138,7 @@ set spelllang=ru_yo,en_us
 " Reducing mode switching delay
 set ttimeoutlen=10
 
-" Themes are: solarized, tomorrow, molokai, monokai,  wombat256mod, gruvbox
-if $THEME == 'dark'
-    set background=dark
-else
-    set background=light
-endif
-
-"colorscheme solarized
-let g:airline_theme='base16_ocean'
+" Colorscheme base16(-solarized-light)
+let base16colorspace=256  " Access colors present in 256 colorspace
+colorscheme base16-solarized-light
+let g:airline_theme='base16'
