@@ -11,27 +11,23 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 
 " Color Schemes
-Plugin 'chriskempson/tomorrow-theme', {'rtp': 'vim/'}
-Plugin 'wombat256.vim'
-Plugin 'tomasr/molokai'
-Plugin 'sickill/vim-monokai'
-Plugin 'altercation/vim-colors-solarized'
-Plugin 'morhetz/gruvbox'
 Plugin 'chriskempson/base16-vim'
+Plugin 'altercation/vim-colors-solarized'
 
 " vim-airline
 Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
+Plugin 'mshkrebtan/vim-airline-themes'
 
+" Features
 Plugin 'godlygeek/tabular' "Vim script for text filtering and alignment.
 Plugin 'ntpeters/vim-better-whitespace'
 Plugin 'ervandew/supertab'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'tpope/vim-fugitive'
-
 Plugin 'scrooloose/nerdtree' " A tree explorer plugin for vim.
 Plugin 'majutsushi/tagbar'   " A class outline viewer for Vim.
 Plugin 'ctrlpvim/ctrlp.vim'  " Fuzzy file, buffer, mru, tag, etc finder.
+Plugin 'junegunn/goyo.vim'   " Distraction-free writing in Vim.
 
 " Markdown
 Plugin 'JamshedVesuna/vim-markdown-preview'
@@ -82,6 +78,7 @@ let vim_markdown_preview_toggle=0
 
 " Plugin: nerdcommenter
 let g:NERDDefaultAlign = 'left'
+let g:NERDSpaceDelims = 1
 
 " Plugin: NERDTree
 map <C-n> :NERDTreeToggle<CR>
@@ -138,7 +135,25 @@ set spelllang=ru_yo,en_us
 " Reducing mode switching delay
 set ttimeoutlen=10
 
-" Colorscheme base16(-solarized-light)
-let base16colorspace=256  " Access colors present in 256 colorspace
+" Natural splits
+set splitright
+set splitbelow
+
+" Colorscheme
+
+" If you use base16-shell, you can set any base16-vim colorscheme. The colors
+" you will get are defined in base16-shell theme anyway.
+
+" Access colors present in 256 colorspace
+let base16colorspace=256
+
 colorscheme base16-solarized-light
-let g:airline_theme='base16'
+
+" Plugin: vim-airline-themes
+
+" Use this option for solarized-like base16-shell themes:
+let g:airline_base16_solarized = 1
+
+" let g:airline_base16_improved_contrast = 1
+let g:airline#themes#base16#constant = 1
+let g:airline_theme='base16_shell'
