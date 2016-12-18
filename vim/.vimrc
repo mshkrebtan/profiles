@@ -60,8 +60,13 @@ filetype plugin indent on    " required
 " Plugin: vim-ariline
 set laststatus=2
 let g:airline_powerline_fonts = 1
+let g:airline_skip_empty_sections = 1
 
 let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#show_buffers = 1
+let g:airline#extensions#tabline#buffer_min_count = 2
+let g:airline#extensions#tabline#tab_nr_type = 1
+let g:airline#extensions#tabline#show_close_button = 0
 let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '|'
 
@@ -149,10 +154,12 @@ let base16colorspace=256
 colorscheme base16-solarized-light
 
 " Plugin: vim-airline-themes
+let g:airline#themes#base16#constant = 1
 
 " Use this option for solarized-like base16-shell themes:
 let g:airline_base16_solarized = 1
 
+" Use this option for other base16-shell themes to get brighter colors:
 " let g:airline_base16_improved_contrast = 1
-let g:airline#themes#base16#constant = 1
+
 let g:airline_theme='base16_shell'
