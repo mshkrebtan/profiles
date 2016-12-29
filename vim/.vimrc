@@ -120,6 +120,10 @@ if filereadable(expand("~/.vim/keymap/russian-jcukenmac.vim"))
 endif
 highlight lCursor guifg=NONE guibg=Cyan
 
+" This langmap allows you to work in Normal mode with active Russian system
+" keboard layout
+set langmap=ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯ;ABCDEFGHIJKLMNOPQRSTUVWXYZ,фисвуапршолдьтщзйкыегмцчня;abcdefghijklmnopqrstuvwxyz
+
 " Enable a colored column
 if version >= 703
   set colorcolumn=80
