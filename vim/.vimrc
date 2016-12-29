@@ -154,7 +154,6 @@ let base16colorspace=256
 colorscheme base16-solarized-light
 
 " Plugin: vim-airline-themes
-let g:airline#themes#base16#constant = 1
 
 " Use this option for solarized-like base16-shell themes:
 let g:airline_base16_solarized = 1
