@@ -16,7 +16,7 @@ Plugin 'altercation/vim-colors-solarized'
 
 " vim-airline
 Plugin 'vim-airline/vim-airline'
-Plugin 'mshkrebtan/vim-airline-themes'
+Plugin 'vim-airline/vim-airline-themes'
 
 " Features
 Plugin 'godlygeek/tabular' "Vim script for text filtering and alignment.
