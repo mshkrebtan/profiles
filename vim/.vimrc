@@ -97,8 +97,8 @@ nmap <F8> :TagbarToggle<CR>
 set number
 
 " Show which lines are wrapped in the number column
-let &showbreak = '+++ '
-set cpoptions+=n
+let &showbreak = '> '
+" set cpoptions+=n
 
 " Enable the use of the mouse if really needed
 "set mouse=a
