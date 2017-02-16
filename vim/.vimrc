@@ -150,6 +150,10 @@ set splitbelow
 " Modeline
 set modeline
 
+" Source local .vimrc files
+set exrc
+set secure
+
 " Colorscheme
 
 " If you use base16-shell, you can set any base16-vim colorscheme. The colors
