@@ -17,3 +17,7 @@ BASE16_SHELL=$HOME/.config/base16-shell/
 export EDITOR=vim
 export PYTHONSTARTUP=~/.pythonrc
 export GREP_OPTIONS='--color=auto'
+
+# prevent several of the system-supplied programs (including tar) from giving
+# special meaning to ._* archive members
+export COPYFILE_DISABLE=1
