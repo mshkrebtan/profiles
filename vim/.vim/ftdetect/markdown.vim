@@ -1,8 +1,11 @@
 " Filetype: markdown
-autocmd FileType md,markdown setlocal spell
+autocmd Filetype md,markdown call SetMarkdownOptions()
 
-if version >= 703
-    autocmd FileType md,markdown setlocal colorcolumn=""
-endif
-
-autocmd FileType md,markdown setlocal showmode
+function SetMarkdownOptions()
+    setlocal spell
+    if version >= 703
+        setlocal colorcolumn=""
+    endif
+    setlocal showmode
+    setlocal listchars=nbsp:·
+endfunction
