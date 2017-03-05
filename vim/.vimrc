@@ -32,6 +32,7 @@ Plugin 'junegunn/goyo.vim'   " Distraction-free writing in Vim.
 " Markdown
 Plugin 'JamshedVesuna/vim-markdown-preview'
 Plugin 'mzlogin/vim-markdown-toc'
+Plugin 'UniCycle'
 
 " Filetype support
 Plugin 'rodjek/vim-puppet'
