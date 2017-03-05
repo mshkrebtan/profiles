@@ -9,4 +9,5 @@ function SetMarkdownOptions()
     endif
     setlocal showmode
     setlocal listchars=nbsp:·
+    setlocal list
 endfunction
