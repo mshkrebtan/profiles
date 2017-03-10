@@ -152,6 +152,9 @@ set modeline
 set exrc
 set secure
 
+" In Visual mode the size of the selected area is shown
+set showcmd
+
 " Colorscheme
 
 " If you use base16-shell, you can set any base16-vim colorscheme. The colors
