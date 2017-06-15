@@ -57,18 +57,6 @@ ln -sf ${DIR}/bash/.bash_tweaks ${HOME}
 curl https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh \
     -o ${HOME}/.git-prompt.sh
 
-
-# Base16 for Gnome Terminal
-base16_terminal_parth="$HOME/.config/base16-gnome-terminal"
-if [ ! -d "$base16_terminal_parth" ]; then
-  git clone https://github.com/chriskempson/base16-gnome-terminal.git \
-    $base16_terminal_parth
-else
-  cd $base16_terminal_parth
-  git fetch origin
-  git pull
-fi
-
 # Base16 Shell
 base16_shell_path="$HOME/.config/base16-shell"
 if [ ! -d "$base16_shell_path" ]; then
