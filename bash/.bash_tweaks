@@ -13,7 +13,10 @@ fi
 BASE16_SHELL=$HOME/.config/base16-shell/
 [ -n "$PS1" ] && [ -s $BASE16_SHELL/profile_helper.sh ] && eval "$($BASE16_SHELL/profile_helper.sh)"
 
-# User Defined
+# Add Go tree to the PATH
+export PATH=$PATH:/usr/local/go/bin
+
+# Other parameters
 export EDITOR=vim
 export PYTHONSTARTUP=~/.pythonrc
 export GREP_OPTIONS='--color=auto'
