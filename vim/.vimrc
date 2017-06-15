@@ -37,7 +37,7 @@ Plugin 'mzlogin/vim-markdown-toc'
 Plugin 'rodjek/vim-puppet'
 Plugin 'plasticboy/vim-markdown'
 Plugin 'vim-ruby/vim-ruby'
-Plugin 'avakhov/vim-yaml'
+Plugin 'yaml.vim'
 Plugin 'nginx.vim'
 Plugin 'saltstack/salt-vim'
 Plugin 'davidhalter/jedi-vim' " Awesome Python autocompletion with VIM
