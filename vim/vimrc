@@ -35,9 +35,7 @@ Plugin 'mzlogin/vim-markdown-toc'
 Plugin 'UniCycle'
 
 " Filetype support
-Plugin 'rodjek/vim-puppet'
 Plugin 'plasticboy/vim-markdown'
-Plugin 'vim-ruby/vim-ruby'
 Plugin 'avakhov/vim-yaml'
 Plugin 'nginx.vim'
 Plugin 'saltstack/salt-vim'

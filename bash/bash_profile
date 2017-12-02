@@ -1,0 +1,10 @@
+# Aliaces
+test ~/.bash_aliases && source ~/.bash_aliases
+
+# Bash Completion
+if [ -f $(brew --prefix)/etc/bash_completion ]; then
+  source $(brew --prefix)/etc/bash_completion
+fi
+
+# Tweaks
+test ~/.bash_tweaks && source ~/.bash_tweaks
