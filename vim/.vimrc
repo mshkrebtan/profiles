@@ -42,6 +42,7 @@ Plugin 'yaml.vim'
 Plugin 'nginx.vim'
 Plugin 'saltstack/salt-vim'
 Plugin 'davidhalter/jedi-vim' " Awesome Python autocompletion with VIM
+Plugin 'hashivim/vim-hashicorp-tools'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
