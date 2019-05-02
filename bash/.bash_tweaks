@@ -1,3 +1,9 @@
+# Set locale to UTF-8.
+# Programs like Vim will use LANG for encoding
+
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
+
 # Git in Bash
 source ~/.git-prompt.sh
 GIT_PS1_SHOWDIRTYSTATE=1

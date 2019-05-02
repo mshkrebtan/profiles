@@ -6,5 +6,3 @@
 
 alias ll="ls -alpGh"
 alias l="ls -lpGh"
-
-alias escape="sed 's/\ /\\\ /g; s/[(]/\\\(/g; s/[)]/\\\)/g; s/\[/\\\[/g; s/\]/\\\]/g'"
