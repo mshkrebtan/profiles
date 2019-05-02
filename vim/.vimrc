@@ -38,7 +38,7 @@ Plugin 'UniCycle'
 Plugin 'rodjek/vim-puppet'
 Plugin 'plasticboy/vim-markdown'
 Plugin 'vim-ruby/vim-ruby'
-Plugin 'yaml.vim'
+Plugin 'stephpy/vim-yaml'
 Plugin 'nginx.vim'
 Plugin 'saltstack/salt-vim'
 Plugin 'davidhalter/jedi-vim' " Awesome Python autocompletion with VIM
@@ -165,6 +165,7 @@ set secure
 let base16colorspace=256
 
 colorscheme base16-solarized-light
+source ~/.vimrc_background
 
 " Plugin: vim-airline-themes
 
