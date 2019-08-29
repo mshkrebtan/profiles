@@ -1,4 +1,5 @@
 #!/bin/bash
+set +e
 
 # Get the installation script directory path
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
@@ -11,18 +12,9 @@ install_vim() {
     # Link .vimrc
     ln -s ${DIR}/vim/.vimrc ${HOME}
 
-    # Link Russian-jcukenmac keymap
-    mkdir -p ${HOME}/.vim/keymap
-    ln -s ${DIR}/vim/.vim/keymap/russian-jcukenmac.vim \
-        ${HOME}/.vim/keymap/
-
-    # Link additional tabular commands
-    mkdir -p ${HOME}/.vim/bundle/tabular/after/plugin/
-    ln -s ${DIR}/vim/.vim/bundle/tabular/after/plugin/my_tabular_commands.vim \
-        ${HOME}/.vim/bundle/tabular/after/plugin/
-
     # Link filetype definitions
-    ln -s ${DIR}/vim/.vim/ftdetect ${HOME}/.vim/
+    mkdir -p "${HOME}/.vim/after"
+    ln -s "${DIR}/vim/.vim/after/ftplugin" "${HOME}/.vim/after"
 }
 
 install_tmux() {
@@ -52,6 +44,3 @@ install_tmux
 
 # Vim
 install_vim
-
-# Python
-ln -s ${DIR}/python/.pythonrc ${HOME}
