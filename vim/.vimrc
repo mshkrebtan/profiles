@@ -12,37 +12,30 @@ Plugin 'VundleVim/Vundle.vim'
 
 " Color Schemes
 Plugin 'chriskempson/base16-vim'
-Plugin 'altercation/vim-colors-solarized'
 
 " vim-airline
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 
-" Features
-Plugin 'godlygeek/tabular' "Vim script for text filtering and alignment.
-Plugin 'ntpeters/vim-better-whitespace'
-Plugin 'ervandew/supertab'
+" Top features
+Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'mileszs/ack.vim'
 Plugin 'scrooloose/nerdcommenter'
-Plugin 'tpope/vim-fugitive'
-Plugin 'scrooloose/nerdtree' " A tree explorer plugin for vim.
-Plugin 'majutsushi/tagbar'   " A class outline viewer for Vim.
-Plugin 'ctrlpvim/ctrlp.vim'  " Fuzzy file, buffer, mru, tag, etc finder.
-Plugin 'junegunn/goyo.vim'   " Distraction-free writing in Vim.
-
-" Markdown
-Plugin 'JamshedVesuna/vim-markdown-preview'
-Plugin 'mzlogin/vim-markdown-toc'
-Plugin 'UniCycle'
+Plugin 'godlygeek/tabular'
+Plugin 'ntpeters/vim-better-whitespace'
 
 " Filetype support
-Plugin 'rodjek/vim-puppet'
-Plugin 'plasticboy/vim-markdown'
-Plugin 'vim-ruby/vim-ruby'
+Plugin 'hashivim/vim-hashicorp-tools'
 Plugin 'stephpy/vim-yaml'
+Plugin 'plasticboy/vim-markdown'
 Plugin 'nginx.vim'
 Plugin 'saltstack/salt-vim'
-Plugin 'davidhalter/jedi-vim' " Awesome Python autocompletion with VIM
-Plugin 'hashivim/vim-hashicorp-tools'
+Plugin 'vim-ruby/vim-ruby'
+
+" The rest
+Plugin 'majutsushi/tagbar'
+Plugin 'scrooloose/nerdtree'
+Plugin 'UniCycle'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -62,25 +55,16 @@ filetype plugin indent on    " required
 " Plugin: vim-ariline
 set laststatus=2
 let g:airline_powerline_fonts = 1
-let g:airline_skip_empty_sections = 1
 
 let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#show_buffers = 1
-let g:airline#extensions#tabline#buffer_min_count = 2
+let g:airline#extensions#tabline#show_buffers = 0
 let g:airline#extensions#tabline#tab_nr_type = 1
 let g:airline#extensions#tabline#show_close_button = 0
-let g:airline#extensions#tabline#left_sep = ' '
-let g:airline#extensions#tabline#left_alt_sep = '|'
+let g:airline#extensions#tabline#fnamemod = ':p:~:.'
 
 " Plugin: vim-markdown
 let g:vim_markdown_folding_disabled = 1
 let g:vim_markdown_toc_autofit = 1
-
-" Plugin: vim-markdown-preview
-let vim_markdown_preview_hotkey='<C-L>'
-let vim_markdown_preview_github=1
-let vim_markdown_preview_toggle=0
-let vim_markdown_preview_browser='Safari'
 
 " Plugin: nerdcommenter
 let g:NERDDefaultAlign = 'left'
@@ -92,87 +76,45 @@ map <C-n> :NERDTreeToggle<CR>
 " Plugin: Tagbar
 nmap <F8> :TagbarToggle<CR>
 
-" Non-plugin settings
-" ================
-
-set number
-
-" Show which lines are wrapped in the number column
-let &showbreak = '> '
-" set cpoptions+=n
-
-" Enable the use of the mouse if really needed
-"set mouse=a
-
-" Wrap lines gracefully
-set linebreak
-
-" Enable syntax (coloring)
-if &t_Co > 2 || has("gui_running")
-  syntax on
-  set hlsearch
+" Plugin: ctrlp
+let g:ctrlp_working_path_mode = 'c'
+let g:ctrlp_show_hidden = 1
+let g:ctrlp_match_window = 'results:20'
+let g:ctrlp_extensions = ['dir']
+if executable('rg')
+  let g:ctrlp_use_caching = 0
+  let g:ctrlp_user_command = 'rg --files --no-ignore --ignore-file ~/.config/ripgrep/ignore --hidden %s'
 endif
 
-" Russian keymap (use C-^ to switch)
-if filereadable(expand("~/.vim/keymap/russian-jcukenmac.vim"))
-    set keymap=russian-jcukenmac
-    " Use default keymap for insert mode and search
-    set iminsert=0
-    set imsearch=0
-endif
-highlight lCursor guifg=NONE guibg=Cyan
-
-" This langmap allows you to work in Normal mode with active Russian system
-" keyboard layout
-set langmap=ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯ;ABCDEFGHIJKLMNOPQRSTUVWXYZ,фисвуапршолдьтщзйкыегмцчня;abcdefghijklmnopqrstuvwxyz
-
-" Enable a colored column
-if version >= 703
-  set colorcolumn=80
+" Plugin: Ack
+if executable('rg')
+  let g:ackprg = 'rg --vimgrep --no-ignore --ignore-file ~/.config/ripgrep/ignore --hidden'
 endif
 
-" Indentation without hard tabs
-set expandtab
-set shiftwidth=4
-set softtabstop=4
-
-" Comfortable backspace behaviour
-set backspace=indent,eol,start
-
-" Spell check language
-set spelllang=ru_yo,en_us
-
-" Reducing mode switching delay
-set ttimeoutlen=10
-
-" Natural splits
-set splitright
-set splitbelow
-
-" Modeline
-set modeline
-
-" Source local .vimrc files
-set exrc
-set secure
-
-" Colorscheme
-
+" Plugin: base16-vim
+let base16colorspace=256
 " If you use base16-shell, you can set any base16-vim colorscheme. The colors
 " you will get are defined in base16-shell theme anyway.
-
-" Access colors present in 256 colorspace
-let base16colorspace=256
-
 colorscheme base16-solarized-light
-source ~/.vimrc_background
 
 " Plugin: vim-airline-themes
-
 " Use this option for solarized-like base16-shell themes:
 let g:airline_base16_solarized = 1
-
 " Use this option for other base16-shell themes to get brighter colors:
 " let g:airline_base16_improved_contrast = 1
-
 let g:airline_theme='base16_shell'
+
+" Non-plugin settings
+" ===================
+syntax on
+set backspace=indent,eol,start
+set completeopt=menu,preview,longest
+set expandtab shiftwidth=4 softtabstop=4
+" :help russian-keymap
+set langmap=ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯ;ABCDEFGHIJKLMNOPQRSTUVWXYZ,фисвуапршолдьтщзйкыегмцчня;abcdefghijklmnopqrstuvwxyz
+set nowrapscan
+set spelllang=ru_yo,en_us
+set splitbelow
+set splitright
+" Reducing mode switching delay
+set ttimeoutlen=10
