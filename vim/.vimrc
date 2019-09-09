@@ -108,17 +108,17 @@ let g:airline_theme='base16_shell'
 " ===================
 syntax on
 set backspace=indent,eol,start
-if version >= 703
-    setlocal colorcolumn=+1
-endif
 set completeopt=menu,preview,longest
 set expandtab shiftwidth=4 softtabstop=4
 " :help russian-keymap
 set langmap=ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯ;ABCDEFGHIJKLMNOPQRSTUVWXYZ,фисвуапршолдьтщзйкыегмцчня;abcdefghijklmnopqrstuvwxyz
 set nowrapscan
+set number
 set spelllang=ru_yo,en_us
 set splitbelow
 set splitright
+" Set textwidth and colorcolumn
 set textwidth=79
+set colorcolumn=+1
 " Reducing mode switching delay
 set ttimeoutlen=10
