@@ -119,6 +119,6 @@ set splitbelow
 set splitright
 " Set textwidth and colorcolumn
 set textwidth=79
-set colorcolumn=+1
+set colorcolumn=80
 " Reducing mode switching delay
 set ttimeoutlen=10
