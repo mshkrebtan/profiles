@@ -122,3 +122,14 @@ set textwidth=79
 set colorcolumn=80
 " Reducing mode switching delay
 set ttimeoutlen=10
+
+" List formatting
+" -----------------------------------------------------------------------------
+set autoindent
+" When formatting text, recognize numbered lists
+setlocal formatoptions+=n
+" Adjust the default numbered list formatlistpat to include dash and bullet
+" lists
+set formatlistpat=^\\s*[-*0-9]\\+[\]:.)}\\t\ ]\\s*
+" -----------------------------------------------------------------------------
+" end List formatting
