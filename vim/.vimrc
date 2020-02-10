@@ -107,7 +107,7 @@ let g:airline_theme='base16_shell'
 syntax on
 set backspace=indent,eol,start
 set completeopt=menu,preview,longest
-set expandtab shiftwidth=4 softtabstop=4
+set tabstop=4
 " :help russian-keymap
 set langmap=ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯ;ABCDEFGHIJKLMNOPQRSTUVWXYZ,фисвуапршолдьтщзйкыегмцчня;abcdefghijklmnopqrstuvwxyz
 set nowrapscan
