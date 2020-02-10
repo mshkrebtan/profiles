@@ -31,11 +31,12 @@ Plugin 'plasticboy/vim-markdown'
 Plugin 'nginx.vim'
 Plugin 'saltstack/salt-vim'
 Plugin 'vim-ruby/vim-ruby'
+Plugin 'fatih/vim-go'
 
 " The rest
 Plugin 'majutsushi/tagbar'
-Plugin 'scrooloose/nerdtree'
 Plugin 'UniCycle'
+Plugin 'liuchengxu/graphviz.vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -69,9 +70,6 @@ let g:vim_markdown_toc_autofit = 1
 " Plugin: nerdcommenter
 let g:NERDDefaultAlign = 'left'
 let g:NERDSpaceDelims = 1
-
-" Plugin: NERDTree
-map <C-n> :NERDTreeToggle<CR>
 
 " Plugin: Tagbar
 nmap <F8> :TagbarToggle<CR>
