@@ -11,7 +11,7 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 
 " Color Schemes
-Plugin 'chriskempson/base16-vim'
+Plugin 'morhetz/gruvbox'
 
 " vim-airline
 Plugin 'vim-airline/vim-airline'
@@ -56,7 +56,6 @@ filetype plugin indent on    " required
 " Plugin: vim-ariline
 set laststatus=2
 let g:airline_powerline_fonts = 1
-
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#show_buffers = 0
 let g:airline#extensions#tabline#tab_nr_type = 1
@@ -89,18 +88,26 @@ if executable('rg')
   let g:ackprg = 'rg --vimgrep --no-ignore --ignore-file ~/.config/ripgrep/ignore --hidden'
 endif
 
-" Plugin: base16-vim
-let base16colorspace=256
-" If you use base16-shell, you can set any base16-vim colorscheme. The colors
-" you will get are defined in base16-shell theme anyway.
-colorscheme base16-solarized-light
+" Colorscheme
+" -----------------------------------------------------------------------------
+" Enable true color
+if exists('+termguicolors')
+  let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+  let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+  set termguicolors
+endif
+
+colorscheme gruvbox
+set background=light
+
+" Plugin: gruvbox
+let g:gruvbox_contrast_light="hard"
+let g:gruvbox_number_column="bg1"
 
 " Plugin: vim-airline-themes
-" Use this option for solarized-like base16-shell themes:
-let g:airline_base16_solarized = 1
-" Use this option for other base16-shell themes to get brighter colors:
-" let g:airline_base16_improved_contrast = 1
-let g:airline_theme='base16_shell'
+let g:airline_theme='gruvbox'
+" -----------------------------------------------------------------------------
+" end Colorscheme
 
 " Non-plugin settings
 " ===================
