@@ -114,7 +114,7 @@ let g:airline_theme='gruvbox'
 syntax on
 set backspace=indent,eol,start
 set completeopt=menu,preview,longest
-set tabstop=4
+set expandtab
 " :help russian-keymap
 set langmap=ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯ;ABCDEFGHIJKLMNOPQRSTUVWXYZ,фисвуапршолдьтщзйкыегмцчня;abcdefghijklmnopqrstuvwxyz
 set nowrapscan
