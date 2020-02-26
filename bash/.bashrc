@@ -6,9 +6,10 @@ alias l="ls -lpGh"
 # end Aliases
 
 # Set locale to UTF-8
-# Programs like Vim will use LANG for encoding
+# Programs like Vim and Emacs will use LANG for encoding
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
+export LANGUAGE=en_US.UTF-8
 
 # Git in Bash
 source ~/.git-prompt.sh
@@ -38,5 +39,17 @@ export PATH="/usr/local/sbin:$PATH"
 export COPYFILE_DISABLE=1
 
 # Other parameters
-export EDITOR=vim
 export GREP_OPTIONS='--color=auto'
+export GPG_TTY="$(tty)"
+
+complete -C /usr/local/bin/terraform terraform
+complete -C /usr/local/bin/vault vault
+
+if [ -f '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.bash.inc' ]; then
+  source '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.bash.inc'
+fi
+
+if [ -f '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.bash.inc' ]; then
+  source '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.bash.inc'
+fi
+
