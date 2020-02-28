@@ -33,3 +33,4 @@ There are two things you can do about this warning:
 (menu-bar-mode -1)
 (load-theme 'gruvbox-light-hard t)
 (require 'git-commit)
+(define-key input-decode-map "\e[27;6;8~" [C-S-backspace])
