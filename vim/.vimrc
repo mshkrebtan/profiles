@@ -1,57 +1,37 @@
-set nocompatible              " be iMproved, required
-filetype off                  " required
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
 
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-" alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
-
-" let Vundle manage Vundle, required
-Plugin 'VundleVim/Vundle.vim'
+call plug#begin('~/.vim/plugged')
 
 " Color Schemes
-Plugin 'morhetz/gruvbox'
+Plug 'morhetz/gruvbox'
 
 " vim-airline
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 
 " Top features
-Plugin 'ctrlpvim/ctrlp.vim'
-Plugin 'mileszs/ack.vim'
-Plugin 'scrooloose/nerdcommenter'
-Plugin 'godlygeek/tabular'
-Plugin 'ntpeters/vim-better-whitespace'
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'mileszs/ack.vim'
+Plug 'scrooloose/nerdcommenter'
+Plug 'godlygeek/tabular'
+Plug 'ntpeters/vim-better-whitespace'
 
 " Filetype support
-Plugin 'hashivim/vim-hashicorp-tools'
-Plugin 'stephpy/vim-yaml'
-Plugin 'plasticboy/vim-markdown'
-Plugin 'nginx.vim'
-Plugin 'saltstack/salt-vim'
-Plugin 'vim-ruby/vim-ruby'
-Plugin 'fatih/vim-go'
+Plug 'hashivim/vim-hashicorp-tools'
+Plug 'vim-ruby/vim-ruby'
+Plug 'fatih/vim-go'
 
 " The rest
-Plugin 'majutsushi/tagbar'
-Plugin 'UniCycle'
-Plugin 'liuchengxu/graphviz.vim'
+Plug 'majutsushi/tagbar'
+Plug 'vim-scripts/UniCycle'
+Plug 'liuchengxu/graphviz.vim'
 
-" All of your Plugins must be added before the following line
-call vundle#end()            " required
-filetype plugin indent on    " required
-" To ignore plugin indent changes, instead use:
-"filetype plugin on
-"
-" Brief help
-" :PluginList       - lists configured plugins
-" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
-" :PluginSearch foo - searches for foo; append `!` to refresh local cache
-" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
-"
-" see :h vundle for more details or wiki for FAQ
-" Put your non-Plugin stuff after this line
+" Initialize plugin system
+call plug#end()
 
 " Plugin: vim-ariline
 set laststatus=2
@@ -61,10 +41,6 @@ let g:airline#extensions#tabline#show_buffers = 0
 let g:airline#extensions#tabline#tab_nr_type = 1
 let g:airline#extensions#tabline#show_close_button = 0
 let g:airline#extensions#tabline#fnamemod = ':p:~:.'
-
-" Plugin: vim-markdown
-let g:vim_markdown_folding_disabled = 1
-let g:vim_markdown_toc_autofit = 1
 
 " Plugin: nerdcommenter
 let g:NERDDefaultAlign = 'left'
@@ -97,11 +73,13 @@ if exists('+termguicolors')
   set termguicolors
 endif
 
+" Set colorscheme
 colorscheme gruvbox
-set background=light
+set background=dark
 
 " Plugin: gruvbox
 let g:gruvbox_contrast_light="hard"
+let g:gruvbox_contrast_dark="hard"
 let g:gruvbox_number_column="bg1"
 
 " Plugin: vim-airline-themes
@@ -110,10 +88,12 @@ let g:airline_theme='gruvbox'
 " end Colorscheme
 
 " Non-plugin settings
-" ===================
+" -----------------------------------------------------------------------------
 syntax on
 set backspace=indent,eol,start
 set completeopt=menu,preview,longest
+set wildmode=longest,list
+set wildmenu
 set expandtab
 " :help russian-keymap
 set langmap=ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯ;ABCDEFGHIJKLMNOPQRSTUVWXYZ,фисвуапршолдьтщзйкыегмцчня;abcdefghijklmnopqrstuvwxyz
