@@ -71,11 +71,12 @@ if exists('+termguicolors')
   let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
   let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
   set termguicolors
+  set hlsearch
 endif
 
 " Set colorscheme
 colorscheme gruvbox
-set background=dark
+set background=light
 
 " Plugin: gruvbox
 let g:gruvbox_contrast_light="hard"
@@ -97,16 +98,21 @@ set wildmenu
 set expandtab
 " :help russian-keymap
 set langmap=ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯ;ABCDEFGHIJKLMNOPQRSTUVWXYZ,фисвуапршолдьтщзйкыегмцчня;abcdefghijklmnopqrstuvwxyz
+set incsearch
 set nowrapscan
 set number
 set spelllang=ru_yo,en_us
 set splitbelow
 set splitright
 " Set textwidth and colorcolumn
-set textwidth=79
-set colorcolumn=80
+set textwidth=78
+set colorcolumn=79
 " Reducing mode switching delay
+set ttimeout
 set ttimeoutlen=10
+" Show tabs
+set list
+set listchars=tab:>-,trail:-
 
 " List formatting
 " -----------------------------------------------------------------------------
@@ -118,3 +124,6 @@ setlocal formatoptions+=n
 set formatlistpat=^\\s*[-*0-9]\\+[\]:.)}\\t\ ]\\s*
 " -----------------------------------------------------------------------------
 " end List formatting
+
+command DiffOrig vert new | set bt=nofile | r ++edit # | 0d_ | diffthis
+          \ | wincmd p | diffthis
