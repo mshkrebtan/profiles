@@ -19,11 +19,12 @@ Plug 'mileszs/ack.vim'
 Plug 'scrooloose/nerdcommenter'
 Plug 'godlygeek/tabular'
 Plug 'ntpeters/vim-better-whitespace'
+Plug 'tpope/vim-fugitive'
 
 " Filetype support
-Plug 'hashivim/vim-hashicorp-tools'
-Plug 'vim-ruby/vim-ruby'
-Plug 'fatih/vim-go'
+Plug 'hashivim/vim-hashicorp-tools', { 'for': 'terraform' }
+Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
+Plug 'fatih/vim-go', { 'for': 'go' }
 
 " The rest
 Plug 'majutsushi/tagbar'
@@ -91,6 +92,7 @@ let g:airline_theme='gruvbox'
 " Non-plugin settings
 " -----------------------------------------------------------------------------
 syntax on
+set hidden
 set backspace=indent,eol,start
 set completeopt=menu,preview,longest
 set wildmode=longest,list
@@ -112,7 +114,9 @@ set ttimeout
 set ttimeoutlen=10
 " Show tabs
 set list
-set listchars=tab:>-,trail:-
+set listchars=tab:>-
+" Always change the current working derictory
+set autochdir
 
 " List formatting
 " -----------------------------------------------------------------------------
