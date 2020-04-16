@@ -14,8 +14,6 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
 " Top features
-Plug 'ctrlpvim/ctrlp.vim'
-Plug 'mileszs/ack.vim'
 Plug 'scrooloose/nerdcommenter'
 Plug 'godlygeek/tabular'
 Plug 'ntpeters/vim-better-whitespace'
@@ -25,6 +23,8 @@ Plug 'tpope/vim-fugitive'
 Plug 'hashivim/vim-hashicorp-tools', { 'for': 'terraform' }
 Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
 Plug 'fatih/vim-go', { 'for': 'go' }
+Plug 'stephpy/vim-yaml', { 'for': 'yaml' }
+Plug 'vim-scripts/nginx.vim', { 'for': 'nginx' }
 
 " The rest
 Plug 'majutsushi/tagbar'
