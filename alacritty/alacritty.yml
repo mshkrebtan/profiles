@@ -182,73 +182,37 @@ font:
 # If `true`, bold text is drawn using the bright color variants.
 draw_bold_text_with_bright_colors: false
 
-# Base16 Solarized 256
+# Colors (Gruvbox light)
 colors:
   # Default colors
   primary:
-    # Solarized Dark:  base 03 - background
-    # background: '0x002b36'
-    # Solarized Light: base  3 - background
-    background: '0xfdf6e3'
-
-    # Solarized Dark:  base  0 - body text / default code / primary content
-    # foreground: '0x839496'
-    # Solarized Light: base 00 - body text / default code / primary content
-    foreground: '0x657b83'
-
-    # Bright and dim foreground colors
-    #
-    # The dimmed foreground color is calculated automatically if it is not present.
-    # If the bright foreground color is not set, or `draw_bold_text_with_bright_colors`
-    # is `false`, the normal foreground color will be used.
-    #dim_foreground: '0x9a9a9a'
-
-    # Solarized Dark:  base  1 - optional ephasized content
-    # bright_foreground: '0x93a1a1'
-
-    # Solarized Light: base  01 - optional ephasized content
-    bright_foreground: '0x586e75'
-
-  cursor:
-    # Solarized Dark:  base 02 - background highlights
-    # text: '0x073642'
-    # Solarized Light: base  2 - background highlights
-    text: '0xeee8d5'
-
-    # Solarized Dark:  base  0 - body text / default code / primary content
-    # cursor: '0x839496'
-    # Solarized Light: base 00 - body text / default code / primary content
-    cursor: '0x657b83'
+    # hard contrast: background = '#f9f5d7'
+    background: '#f9f5d7'
+    # background: '#fbf1c7'
+    # soft contrast: background = '#f2e5bc'
+    foreground: '#3c3836'
 
   # Normal colors
   normal:
-    black:   '0x073642'
-    red:     '0xdc322f'
-    green:   '0x859900'
-    yellow:  '0xb58900'
-    blue:    '0x268bd2'
-    magenta: '0xd33682'
-    cyan:    '0x2aa198'
-    white:   '0xeee8d5'
+    black:   '#fbf1c7'
+    red:     '#cc241d'
+    green:   '#98971a'
+    yellow:  '#d79921'
+    blue:    '#458588'
+    magenta: '#b16286'
+    cyan:    '#689d6a'
+    white:   '#7c6f64'
 
   # Bright colors
   bright:
-    black:   '0x002b36'
-    red:     '0xcb4b16'
-    green:   '0x586e75'
-    yellow:  '0x657b83'
-    blue:    '0x839496'
-    magenta: '0x6c71c4'
-    cyan:    '0x93a1a1'
-    white:   '0xfdf6e3'
-
-  indexed_colors:
-    - { index: 16, color: '0xcb4b16' }
-    - { index: 17, color: '0xd33682' }
-    - { index: 18, color: '0xeee8d5' }
-    - { index: 19, color: '0x93a1a1' }
-    - { index: 20, color: '0x657b83' }
-    - { index: 21, color: '0x073642' }
+    black:   '#928374'
+    red:     '#9d0006'
+    green:   '#79740e'
+    yellow:  '#b57614'
+    blue:    '#076678'
+    magenta: '#8f3f71'
+    cyan:    '#427b58'
+    white:   '#3c3836'
 
 # Visual Bell
 #
