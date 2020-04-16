@@ -93,18 +93,18 @@ let g:airline_theme='gruvbox'
 " Non-plugin settings
 " -----------------------------------------------------------------------------
 syntax on
-set hidden
 set backspace=indent,eol,start
 set completeopt=menu,preview,longest
 set wildmode=longest,list
 set wildmenu
+set showcmd
 set expandtab
 " :help russian-keymap
 set langmap=ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯ;ABCDEFGHIJKLMNOPQRSTUVWXYZ,фисвуапршолдьтщзйкыегмцчня;abcdefghijklmnopqrstuvwxyz
 set incsearch
 set nowrapscan
 set number
-set spelllang=ru_yo,en_us
+set spelllang=en_gb,ru_yo,de_de
 set splitbelow
 set splitright
 " Set textwidth and colorcolumn
