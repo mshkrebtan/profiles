@@ -30,6 +30,8 @@
 ;; ----------------------------------------------------------------------------
 ;; end GUI
 
+(setq confirm-kill-emacs 'y-or-n-p)
+
 (setq-default line-spacing 0.2)
 (setq-default column-number-mode t)
 (setq-default fill-column 80)
