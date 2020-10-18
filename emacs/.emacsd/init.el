@@ -3,12 +3,18 @@
 (package-initialize)
 (require 'use-package)
 
-(setq exec-path (append '("/usr/local/bin") exec-path))
+(setq exec-path (append '("/usr/local/bin") exec-path)
+      confirm-kill-emacs 'yes-or-no-p
+      ring-bell-function 'ignore)
+
+(setq-default require-final-newline t
+              indent-tabs-mode nil
+              js-indent-level 2
+              ispell-program-name "aspell")
 
 (server-mode 1)
 
-(setq confirm-kill-emacs 'yes-or-no-p
-      ring-bell-function 'ignore)
+(load-file "~/.emacs.d/quail-diktor.el")
 
 (load-theme 'gruvbox-light-hard t)
 
@@ -30,11 +36,6 @@
 (delete-selection-mode 1)
 
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
-
-(setq-default require-final-newline t
-              indent-tabs-mode nil
-              js-indent-level 2
-              ispell-program-name "aspell")
 
 (use-package markdown-mode
   :ensure t
