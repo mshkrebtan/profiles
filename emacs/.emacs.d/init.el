@@ -22,6 +22,8 @@
 (add-to-list 'default-frame-alist '(font . "JetBrains Mono-14"))
 (add-to-list 'default-frame-alist '(line-spacing . 0.2))
 
+(tool-bar-mode -1)
+
 ;; Mode Line
 (size-indication-mode 1)
 (column-number-mode 1)
