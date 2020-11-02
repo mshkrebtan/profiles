@@ -58,6 +58,10 @@
 (global-set-key (kbd "C-x g") 'magit-status)
 (global-set-key (kbd "C-x M-g") 'magit-dispatch)
 
+(add-hook 'text-mode-hook 'visual-line-mode)
+(add-hook 'text-mode-hook (lambda ()
+                            (display-fill-column-indicator-mode -1)))
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
