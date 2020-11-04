@@ -82,10 +82,22 @@
 
 (global-set-key (kbd "C-x g") 'magit-status)
 (global-set-key (kbd "C-x M-g") 'magit-dispatch)
+(use-package lsp-mode
+  :ensure t
+  :requires (flycheck company)
+  :init
+  (setq lsp-keymap-prefix "s-l")
+  :hook ((rust-mode . lsp)
+         (lsp-mode . lsp-enable-which-key-integration))
+  :commands lsp)
 
 (add-hook 'text-mode-hook 'visual-line-mode)
 (add-hook 'text-mode-hook (lambda ()
                             (display-fill-column-indicator-mode -1)))
+(use-package lsp-ui
+  :ensure t
+  :requires lsp-mode
+  :commands lsp-ui-mode)
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
