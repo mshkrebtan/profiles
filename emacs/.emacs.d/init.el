@@ -55,6 +55,11 @@
 (use-package git-commit
   :ensure t)
 
+(use-package rust-mode
+  :ensure t
+  :init
+  (setq rust-format-on-save t))
+
 (global-set-key (kbd "C-x g") 'magit-status)
 (global-set-key (kbd "C-x M-g") 'magit-dispatch)
 
