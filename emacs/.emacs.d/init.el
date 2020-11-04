@@ -65,6 +65,16 @@
   :config
   (which-key-mode 1))
 
+(use-package flycheck
+  :ensure t
+  :config
+  (global-flycheck-mode 1))
+
+(use-package flycheck-rust
+  :ensure t
+  :requires flycheck
+  :hook (rust-mode . flycheck-rust-setup))
+
 (global-set-key (kbd "C-x g") 'magit-status)
 (global-set-key (kbd "C-x M-g") 'magit-dispatch)
 
