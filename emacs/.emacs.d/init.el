@@ -75,6 +75,11 @@
   :requires flycheck
   :hook (rust-mode . flycheck-rust-setup))
 
+(use-package company
+  :ensure t
+  :config
+  (global-company-mode 1))
+
 (global-set-key (kbd "C-x g") 'magit-status)
 (global-set-key (kbd "C-x M-g") 'magit-dispatch)
 
