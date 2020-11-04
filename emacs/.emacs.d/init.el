@@ -60,6 +60,11 @@
   :init
   (setq rust-format-on-save t))
 
+(use-package which-key
+  :ensure t
+  :config
+  (which-key-mode 1))
+
 (global-set-key (kbd "C-x g") 'magit-status)
 (global-set-key (kbd "C-x M-g") 'magit-dispatch)
 
