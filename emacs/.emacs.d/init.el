@@ -45,8 +45,8 @@
   :mode (("README\\.md\\'" . gfm-mode))
   :init
   (setq markdown-command "/usr/local/bin/markdown")
-  (add-hook 'markdown-mode-hook 'turn-on-auto-fill)
-  (add-hook 'markdown-mode-hook 'flyspell-mode))
+  :hook ((markdown-mode . turn-on-auto-fill)
+         (markdown-mode . flyspell-mode)))
 
 (use-package terraform-mode
   :ensure t
