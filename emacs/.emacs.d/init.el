@@ -7,7 +7,9 @@
 ;; Global variables
 (setq confirm-kill-emacs 'yes-or-no-p
       ring-bell-function 'ignore
-      custom-file "~/.emacs.d/custom.el")
+      custom-file "~/.emacs.d/custom.el"
+      backup-directory-alist '(("." . "~/.emacs.d/backup"))
+      backup-by-copying-when-linked t)
 
 
 ;; Buffer-local defaults
