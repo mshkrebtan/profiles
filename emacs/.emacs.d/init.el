@@ -106,8 +106,3 @@
   :hook ((rust-mode . lsp)
          (lsp-mode . lsp-enable-which-key-integration))
   :commands lsp)
-
-(use-package lsp-ui
-  :ensure t
-  :requires lsp-mode
-  :hook (lsp-mode . lsp-ui-mode))
