@@ -88,6 +88,8 @@
 
 (use-package flycheck
   :ensure t
+  :init
+  (setq flycheck-check-syntax-automatically '(mode-enabled save))
   :config
   (global-flycheck-mode 1))
 
