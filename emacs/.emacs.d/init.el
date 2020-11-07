@@ -108,6 +108,7 @@
   :requires (flycheck company)
   :init
   (setq lsp-keymap-prefix "s-l")
+  (setq lsp-rust-server 'rust-analyzer)
   :hook ((rust-mode . lsp)
          (lsp-mode . lsp-enable-which-key-integration))
   :commands lsp)
