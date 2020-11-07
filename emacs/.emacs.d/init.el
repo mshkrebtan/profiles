@@ -1,15 +1,12 @@
-(load-theme 'gruvbox-light-hard t)
-
-
-(require 'package)
-(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
-(package-initialize)
+;; Load additional code
+(setq custom-file "~/.emacs.d/custom.el")
+(load custom-file)
+(load-file "~/.emacs.d/quail-diktor.el")
 
 
 ;; Global variables
 (setq confirm-kill-emacs 'yes-or-no-p
       ring-bell-function 'ignore
-      custom-file "~/.emacs.d/custom.el"
       backup-directory-alist '(("." . "~/.emacs.d/backup"))
       backup-by-copying-when-linked t)
 
@@ -22,16 +19,8 @@
               fill-column 80)
 
 
-;; Frame defaults
-(add-to-list 'default-frame-alist '(fullscreen . maximized))
-(add-to-list 'default-frame-alist '(font . "JetBrains Mono-14"))
-(add-to-list 'default-frame-alist '(line-spacing . 0.2))
-
-
 ;; Global modes
 (server-mode 1)
-(tool-bar-mode -1)
-(scroll-bar-mode -1)
 (size-indication-mode 1)
 (column-number-mode 1)
 (global-display-line-numbers-mode 1)
@@ -47,13 +36,14 @@
                             (display-fill-column-indicator-mode -1)))
 
 
-;; Load additional code
-(load-file "~/.emacs.d/quail-diktor.el")
-(load custom-file)
-
-
 ;; Packages
 (require 'use-package)
+
+(use-package gruvbox-theme
+  :ensure t
+  :config
+  (load-theme 'gruvbox-light-hard t))
+
 
 (use-package magit
   :ensure t
@@ -71,13 +61,16 @@
 
 (use-package terraform-mode
   :ensure t
+  :mode "\\.tf\\'"
   :hook (terraform-mode . terraform-format-on-save-mode))
 
 (use-package git-commit
+  :defer t
   :ensure t)
 
 (use-package rust-mode
   :ensure t
+  :mode "\\.rs\\'"
   :init
   (setq rust-format-on-save t))
 
