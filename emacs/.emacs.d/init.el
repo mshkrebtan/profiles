@@ -1,7 +1,9 @@
+(load-theme 'gruvbox-light-hard t)
+
+
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
 (package-initialize)
-(require 'use-package)
 
 
 ;; Global variables
@@ -29,6 +31,7 @@
 ;; Global modes
 (server-mode 1)
 (tool-bar-mode -1)
+(scroll-bar-mode -1)
 (size-indication-mode 1)
 (column-number-mode 1)
 (global-display-line-numbers-mode 1)
@@ -44,7 +47,14 @@
                             (display-fill-column-indicator-mode -1)))
 
 
+;; Load additional code
+(load-file "~/.emacs.d/quail-diktor.el")
+(load custom-file)
+
+
 ;; Packages
+(require 'use-package)
+
 (use-package magit
   :ensure t
   :bind (("C-x g" . magit-status)
@@ -103,9 +113,4 @@
 (use-package lsp-ui
   :ensure t
   :requires lsp-mode
-  :commands lsp-ui-mode)
-
-;; Load additional code
-(load-file "~/.emacs.d/quail-diktor.el")
-(load-theme 'gruvbox-light-hard t)
-(load custom-file)
+  :hook (lsp-mode . lsp-ui-mode))
