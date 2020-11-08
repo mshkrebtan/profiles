@@ -11,6 +11,10 @@
 (add-to-list 'default-frame-alist '(font . "JetBrains Mono-14"))
 (add-to-list 'default-frame-alist '(line-spacing . 0.2))
 
+(dolist (x '((ns-transparent-titlebar . unbound)
+		  (ns-appearance . unbound)))
+   (add-to-list 'frameset-filter-alist x))
+
 
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)

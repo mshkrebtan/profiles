@@ -22,6 +22,7 @@
 
 ;; Global modes
 (server-mode 1)
+(desktop-save-mode 1)
 (size-indication-mode 1)
 (column-number-mode 1)
 (global-display-line-numbers-mode 1)
