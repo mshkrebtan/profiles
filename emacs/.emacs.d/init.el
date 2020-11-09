@@ -64,18 +64,18 @@
 
 (use-package terraform-mode
   :ensure t
-  :mode "\\.tf\\'"
+  :commands terraform-mode
   :hook (terraform-mode . terraform-format-on-save-mode))
 
 (use-package git-commit
-  :defer t
-  :ensure t)
+  :ensure t
+  :commands git-commit-mode)
 
 (use-package rust-mode
   :ensure t
-  :mode "\\.rs\\'"
   :init
-  (setq rust-format-on-save t))
+  (setq rust-format-on-save t)
+  :commands rust-mode)
 
 (use-package which-key
   :ensure t
