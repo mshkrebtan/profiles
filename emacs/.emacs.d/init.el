@@ -67,6 +67,10 @@
   :commands terraform-mode
   :hook (terraform-mode . terraform-format-on-save-mode))
 
+(use-package yaml-mode
+  :ensure t
+  :commands yaml-mode)
+
 (use-package git-commit
   :ensure t
   :commands git-commit-mode)
