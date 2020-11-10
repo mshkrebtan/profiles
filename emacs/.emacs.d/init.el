@@ -10,7 +10,8 @@
       backup-directory-alist '(("." . "~/.emacs.d/backup"))
       backup-by-copying-when-linked t
       read-process-output-max (* 1024 1024)
-      desktop-save 'if-exists)
+      desktop-save 'if-exists
+      ediff-split-window-function 'split-window-horizontally)
 
 
 ;; Buffer-local defaults
@@ -96,6 +97,8 @@
 
 (use-package company
   :ensure t
+  :init
+  (setq company-dabbrev-downcase nil)
   :config
   (global-company-mode 1))
 
