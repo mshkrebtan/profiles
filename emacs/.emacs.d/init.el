@@ -27,16 +27,11 @@
 (size-indication-mode 1)
 (column-number-mode 1)
 (global-display-line-numbers-mode 1)
-(global-display-fill-column-indicator-mode 1)
 (delete-selection-mode 1)
 
 
 ;; Hooks
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
-
-(add-hook 'text-mode-hook 'visual-line-mode)
-(add-hook 'text-mode-hook (lambda ()
-                            (display-fill-column-indicator-mode -1)))
 
 
 ;; Packages
@@ -59,8 +54,9 @@
   :mode (("README\\.md\\'" . gfm-mode))
   :init
   (setq markdown-command "/usr/local/bin/markdown")
-  :hook ((markdown-mode . turn-on-auto-fill)
-         (markdown-mode . flyspell-mode)))
+  :hook ((markdown-mode . flyspell-mode)
+         (markdown-mode . turn-on-auto-fill)
+         (markdown-mode . display-fill-column-indicator-mode)))
 
 (use-package terraform-mode
   :ensure t
