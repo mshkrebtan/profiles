@@ -1,3 +1,10 @@
-term alacritty
+startup_message off
+
+hardstatus alwayslastline
+hardstatus string '%{= gk}[%S] %-w%n %t*%+w %= "%H" %c %d-%M-%Y'
+
 altscreen on
-hardstatus string "%S: %w"
+term alacritty
+utf8 on
+
+defscrollback 50000
