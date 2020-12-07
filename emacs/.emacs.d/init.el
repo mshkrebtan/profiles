@@ -5,29 +5,42 @@
 
 
 ;; Global variables
-(setq confirm-kill-emacs 'yes-or-no-p
-      ring-bell-function 'ignore
+(setq backup-by-copying-when-linked t
       backup-directory-alist '(("." . "~/.emacs.d/backup"))
-      backup-by-copying-when-linked t
-      read-process-output-max (* 1024 1024)
+      completions-format 'vertical
+      confirm-kill-emacs 'yes-or-no-p
       desktop-save 'if-exists
-      ediff-split-window-function 'split-window-horizontally)
+      ediff-split-window-function 'split-window-horizontally
+      read-process-output-max (* 1024 1024)
+      ring-bell-function 'ignore
+      vc-follow-symlinks nil
+      save-interprogram-paste-before-kill t)
+
+
+(put 'scroll-left 'disabled nil)
 
 
 ;; Buffer-local defaults
-(setq-default require-final-newline t
+(setq-default fill-column 80
               indent-tabs-mode nil
-              js-indent-level 2
               ispell-program-name "aspell"
-              fill-column 80)
+              js-indent-level 2
+              require-final-newline 'visit-save
+              mode-require-final-newline 'visit-save)
 
 
 ;; Global modes
 (server-mode 1)
+
 (desktop-save-mode 1)
+
 (size-indication-mode 1)
 (column-number-mode 1)
 (global-display-line-numbers-mode 1)
+
+(show-paren-mode 1)
+(electric-pair-mode 1)
+
 (delete-selection-mode 1)
 
 
@@ -66,17 +79,21 @@
 
 (use-package yaml-mode
   :ensure t
-  :commands yaml-mode)
+  :commands yaml-mode
+  :hook (yaml-mode . display-fill-column-indicator-mode))
 
 (use-package git-commit
   :ensure t
+  :init
+  (global-git-commit-mode t)
   :commands git-commit-mode)
 
 (use-package rust-mode
   :ensure t
   :init
   (setq rust-format-on-save t)
-  :commands rust-mode)
+  :commands rust-mode
+  :hook (rust-mode . display-fill-column-indicator-mode))
 
 (use-package which-key
   :ensure t
@@ -111,3 +128,15 @@
   :hook ((rust-mode . lsp)
          (lsp-mode . lsp-enable-which-key-integration))
   :commands lsp)
+
+(use-package json-mode
+  :ensure t
+ :commands json-mode)
+
+(use-package dockerfile-mode
+  :ensure t
+  :commands dockerfile-mode)
+
+(use-package graphviz-dot-mode
+  :ensure t
+  :commands graphviz-dot-mode)
