@@ -88,6 +88,10 @@
   (global-git-commit-mode t)
   :commands git-commit-mode)
 
+(use-package gitignore-mode
+  :ensure t
+  :commands gitignore-mode)
+
 (use-package rust-mode
   :ensure t
   :init
@@ -140,3 +144,7 @@
 (use-package graphviz-dot-mode
   :ensure t
   :commands graphviz-dot-mode)
+
+(use-package csv-mode
+  :ensure t
+  :commands csv-mode)
