@@ -24,13 +24,17 @@ fi
 
 # PATH
 # -----------------------------------------------------------------------------
-# Add Go tree to PATH
-export PATH=$PATH:/usr/local/go/bin
+# Add Go tree
+PATH=$PATH:/usr/local/go/bin
 
-# Add Cargo tree to PATH
-export PATH="$HOME/.cargo/bin:$PATH"
+# Add Cargo tree
+PATH="$HOME/.cargo/bin:$PATH"
 
-export PATH="/usr/local/sbin:$PATH"
+PATH="/usr/local/sbin:$PATH"
+
+# Add rbenv shims
+PATH="~/.rbenv/shims:$PATH"
+export PATH
 # -----------------------------------------------------------------------------
 # end PATH
 
