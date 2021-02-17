@@ -45,6 +45,7 @@ export COPYFILE_DISABLE=1
 # Other parameters
 export GREP_OPTIONS='--color=auto'
 export GPG_TTY="$(tty)"
+export EDITOR=emacsclient
 
 complete -C /usr/local/bin/terraform terraform
 complete -C /usr/local/bin/vault vault
@@ -56,4 +57,3 @@ fi
 if [ -f '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.bash.inc' ]; then
   source '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.bash.inc'
 fi
-
