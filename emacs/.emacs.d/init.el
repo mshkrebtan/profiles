@@ -86,7 +86,8 @@
   :ensure t
   :init
   (global-git-commit-mode t)
-  :commands git-commit-mode)
+  :commands git-commit-mode
+  :hook (git-commit-setup . git-commit-turn-on-flyspell))
 
 (use-package gitignore-mode
   :ensure t
