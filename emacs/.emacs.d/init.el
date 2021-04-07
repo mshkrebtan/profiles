@@ -149,3 +149,11 @@
 (use-package csv-mode
   :ensure t
   :commands csv-mode)
+
+(use-package jinja2-mode
+  :ensure t
+  :commands jinja2-mode)
+
+(use-package highlight-indent-guides
+  :ensure t
+  :hook (yaml-mode . highlight-indent-guides-mode))
