@@ -3,6 +3,9 @@
 (load custom-file)
 (load-file "~/.emacs.d/quail-diktor.el")
 
+(eval-when-compile
+  (add-to-list 'load-path "~/.emacs.d/use-package")
+  (require 'use-package))
 
 ;; Global variables
 (setq backup-by-copying-when-linked t
