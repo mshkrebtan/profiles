@@ -70,7 +70,7 @@
   :commands (markdown-mode gfm-mode)
   :mode (("README\\.md\\'" . gfm-mode))
   :init
-  (setq markdown-command "/usr/local/bin/markdown")
+  (setq markdown-command "markdown")
   :hook ((markdown-mode . flyspell-mode)
          (markdown-mode . turn-on-auto-fill)
          (markdown-mode . display-fill-column-indicator-mode)))
