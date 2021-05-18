@@ -1,8 +1,9 @@
 EMACS_HOME = "${HOME}/.emacs.d"
 DIKTOR_HOME = "${HOME}/.config/diktor"
 ALACRITTY_HOME = "${HOME}/.config/alacritty"
+ZDOTDIR = "${HOME}"
 
-.PHONY: alacritty emacs
+.PHONY: alacritty emacs zsh
 
 emacs_files := $(addprefix $(EMACS_HOME)/, custom.el early-init.el init.el quail-diktor.el use-package)
 emacs : $(emacs_files)
@@ -24,3 +25,7 @@ alacritty : $(ALACRITTY_HOME)
 
 $(ALACRITTY_HOME) :
 	ln -sfT "${PWD}/alacritty" "$@"
+zsh : $(ZDOTDIR)/.zshrc
+
+$(ZDOTDIR)/.zshrc :
+	ln -sf "${PWD}/zsh/.zshrc" "$@"
