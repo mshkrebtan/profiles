@@ -10,6 +10,7 @@ fi
 # Autoload zsh functions
 autoload -Uz colors && colors
 autoload -Uz vcs_info
+autoload -Uz select-word-style && select-word-style bash
 
 # Set VCS Information and Tab-RS in PROMPT
 zstyle ':vcs_info:*' enable git
