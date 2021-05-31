@@ -7,29 +7,29 @@
   (add-to-list 'load-path "~/.emacs.d/use-package")
   (require 'use-package))
 
-;; Global variables
-(setq backup-by-copying-when-linked t
-      backup-directory-alist '(("." . "~/.emacs.d/backup"))
-      completions-format 'vertical
-      confirm-kill-emacs 'yes-or-no-p
-      desktop-save 'if-exists
-      ediff-split-window-function 'split-window-horizontally
-      read-process-output-max (* 1024 1024)
-      ring-bell-function 'ignore
-      vc-follow-symlinks nil
-      save-interprogram-paste-before-kill t)
-
+;; Set variables
+(setq-default
+ backup-by-copying-when-linked t
+ backup-directory-alist '(("." . "~/.emacs.d/backup"))
+ completions-format 'vertical
+ confirm-kill-emacs 'yes-or-no-p
+ desktop-save 'if-exists
+ ediff-split-window-function 'split-window-horizontally
+ exec-path (append '("/usr/local/bin/") exec-path)
+ fill-column 80
+ indent-tabs-mode nil
+ js-indent-level 2
+ mode-require-final-newline 'visit-save
+ org-goto-auto-isearch nil
+ read-process-output-max (* 1024 1024)
+ require-final-newline 'visit-save
+ ring-bell-function 'ignore
+ save-interprogram-paste-before-kill t
+ vc-follow-symlinks nil)
 
 (put 'scroll-left 'disabled nil)
 
 
-;; Buffer-local defaults
-(setq-default fill-column 80
-              indent-tabs-mode nil
-              ispell-program-name "aspell"
-              js-indent-level 2
-              require-final-newline 'visit-save
-              mode-require-final-newline 'visit-save)
 
 
 ;; Global modes
@@ -123,7 +123,7 @@
 (use-package company
   :ensure t
   :init
-  (setq company-dabbrev-downcase nil)
+  (setq-default company-dabbrev-downcase nil)
   :config
   (global-company-mode 1))
 
