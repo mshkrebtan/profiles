@@ -139,7 +139,7 @@
 
 (use-package json-mode
   :ensure t
- :commands json-mode)
+  :commands json-mode)
 
 (use-package dockerfile-mode
   :ensure t
@@ -160,3 +160,8 @@
 (use-package highlight-indent-guides
   :ensure t
   :hook (yaml-mode . highlight-indent-guides-mode))
+
+(use-package pinentry
+  :ensure t
+  :config
+  (pinentry-start))
