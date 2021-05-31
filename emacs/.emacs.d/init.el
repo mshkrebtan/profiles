@@ -29,6 +29,8 @@
 
 (put 'scroll-left 'disabled nil)
 
+(setenv "PATH" (concat "/usr/local/bin:" (getenv "PATH")))
+(setenv "SSH_AUTH_SOCK" (expand-file-name "~/.ssh/ssh-agent"))
 
 
 
