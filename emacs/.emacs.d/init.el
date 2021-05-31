@@ -46,7 +46,8 @@
 
 ;; Hooks
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
-
+(add-hook 'xwidget-webkit-mode-hook (lambda () (display-line-numbers-mode -1)))
+(add-hook 'org-mode-hook 'turn-on-auto-fill)
 
 ;; Packages
 (require 'use-package)
