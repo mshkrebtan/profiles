@@ -19,10 +19,13 @@ precmd () { vcs_info }
 
 setopt prompt_subst
 
-PROMPT=$'%B%n@%m %1~${vcs_info_msg_0_}\n%# %b'
+# kube-ps1
+source "/usr/local/opt/kube-ps1/share/kube-ps1.sh"
+
+PROMPT=$'%B%n@%m %1~ $(kube_ps1)${vcs_info_msg_0_}%b\n%# '
 
 if (($+TAB)); then
-  PROMPT="%{$fg_bold[green]%}tab ${TAB}%{$reset_color%} $PROMPT"
+  PROMPT="%{$fg_bold[green]%}(tab)-[${TAB}]-%{$reset_color%}${PROMPT}"
 fi
 
 # Install direnv hook
@@ -49,3 +52,10 @@ export COPYFILE_DISABLE=1
 export GREP_OPTIONS='--color=auto'
 export GPG_TTY="$(tty)"
 export EDITOR=emacsclient
+
+# PATH
+export PATH="/usr/local/opt/openssl@1.1/bin:$PATH"
+
+# Teleport
+export TELEPORT_AUTH="okta"
+export TELEPORT_PROXY="teleport.internal.corp.traderepublic.com:443"
