@@ -11,7 +11,7 @@
 (setq ns-use-proxy-icon nil)
 
 (add-to-list 'default-frame-alist '(fullscreen . maximized))
-(add-to-list 'default-frame-alist '(font . "JetBrains Mono-14"))
+(add-to-list 'default-frame-alist '(font . "JetBrains Mono-13"))
 (add-to-list 'default-frame-alist '(line-spacing . 0.2))
 
 (add-to-list 'frameset-filter-alist '(ns-transparent-titlebar . :never))

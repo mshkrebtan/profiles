@@ -33,6 +33,8 @@
 (setenv "SSH_AUTH_SOCK" (expand-file-name "~/.ssh/ssh-agent"))
 
 
+(global-set-key (kbd "C-x C-b") 'ibuffer)
+
 
 ;; Global modes
 (server-mode 1)
@@ -50,6 +52,8 @@
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 (add-hook 'xwidget-webkit-mode-hook (lambda () (display-line-numbers-mode -1)))
 (add-hook 'org-mode-hook 'turn-on-auto-fill)
+(add-hook 'org-mode-hook 'flyspell-mode)
+(add-hook 'prog-mode-hook 'flyspell-prog-mode)
 
 ;; Packages
 (require 'use-package)
@@ -165,3 +169,7 @@
   :ensure t
   :config
   (pinentry-start))
+(defun my-icomplete-styles ()
+  (setq-local completion-styles '(initials flex)))
+
+(add-hook 'icomplete-minibuffer-setup-hook 'my-icomplete-styles)
