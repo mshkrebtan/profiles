@@ -1,0 +1,14 @@
+[commit]
+	gpgsign = true
+[tag]
+        gpgsign = true
+[gpg]
+	program = gpg
+[user]
+	name = Maksim Shkrebtan
+[core]
+	excludesfile = /Users/mshkrebtan/.gitignore_global
+[pull]
+	rebase = false
+[init]
+	defaultBranch = main
