@@ -1,9 +1,11 @@
 EMACS_HOME = "${HOME}/.emacs.d"
 DIKTOR_HOME = "${HOME}/.config/diktor"
 ALACRITTY_HOME = "${HOME}/.config/alacritty"
+TMUX_HOME = "${HOME}"
 ZDOTDIR = "${HOME}"
+LAUNCH_AGENTS_HOME = "${HOME}/Library"
 
-.PHONY: alacritty emacs zsh
+.PHONY: alacritty emacs zsh tmux launch_agents
 
 emacs_files := $(addprefix $(EMACS_HOME)/, custom.el early-init.el init.el quail-diktor.el use-package)
 emacs : $(emacs_files)
@@ -22,10 +24,20 @@ $(DIKTOR_HOME)/.emacs.d/quail-diktor.el :
 	[ -f "$@" ] || git clone https://github.com/mshkrebtan/diktor.git "$(DIKTOR_HOME)"
 
 alacritty : $(ALACRITTY_HOME)
-
 $(ALACRITTY_HOME) :
-	ln -sfT "${PWD}/alacritty" "$@"
-zsh : $(ZDOTDIR)/.zshrc
+	ln -sf "${PWD}/alacritty" "$@"
 
+zsh : $(ZDOTDIR)/.zshrc
 $(ZDOTDIR)/.zshrc :
 	ln -sf "${PWD}/zsh/.zshrc" "$@"
+
+tmux : $(TMUX_HOME)/.tmux.conf
+$(TMUX_HOME)/.tmux.conf :
+	ln -sf "${PWD}/tmux/.tmux.conf" "$@"
+
+launch_agents:
+	for plist in LaunchAgents/*; do\
+		ln -sf "${PWD}/$${plist}" "$(LAUNCH_AGENTS_HOME)/$${plist}";\
+	done
+
+packages := direnv hunspell markdown ripgrep fd teleport kubeseal jq
