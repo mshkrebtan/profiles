@@ -1,42 +1,61 @@
-;; Load additional code
+;; Load additional files
 (setq custom-file "~/.emacs.d/custom.el")
 (load custom-file)
+
 (load-file "~/.emacs.d/quail-diktor.el")
 
 (eval-when-compile
   (add-to-list 'load-path "~/.emacs.d/use-package")
   (require 'use-package))
 
-;; Set variables
-(setq-default
+
+;; Set global variables
+(setq
  backup-by-copying-when-linked t
  backup-directory-alist '(("." . "~/.emacs.d/backup"))
+ calendar-latitude 52.5
+ calendar-longitude 13.4
+ calendar-location-name "Berlin, Germany"
+ completion-styles '(flex)
  completions-format 'vertical
  confirm-kill-emacs 'yes-or-no-p
  desktop-save 'if-exists
  ediff-split-window-function 'split-window-horizontally
  exec-path (append '("/usr/local/bin/") exec-path)
+ mode-require-final-newline 'visit-save
+ org-agenda-files '("~/org")
+ org-agenda-todo-list-sublevels nil
+ org-goto-auto-isearch nil
+ save-interprogram-paste-before-kill t
+ vc-follow-symlinks nil
+ ring-bell-function 'ignore)
+
+
+;; Set defaults
+(setq-default
  fill-column 80
  indent-tabs-mode nil
- js-indent-level 2
- mode-require-final-newline 'visit-save
- org-goto-auto-isearch nil
- read-process-output-max (* 1024 1024)
- require-final-newline 'visit-save
- ring-bell-function 'ignore
- save-interprogram-paste-before-kill t
- vc-follow-symlinks nil)
+ js-indent-level 2)
 
+
+;; Enable certain functions
 (put 'scroll-left 'disabled nil)
+(put 'dired-find-alternate-file 'disabled nil)
 
+
+;; Set environment variables
 (setenv "PATH" (concat "/usr/local/bin:" (getenv "PATH")))
 (setenv "SSH_AUTH_SOCK" (expand-file-name "~/.ssh/ssh-agent"))
 
 
+;; Set key bindings
 (global-set-key (kbd "C-x C-b") 'ibuffer)
+(global-set-key (kbd "C-c a") 'org-agenda)
+(global-set-key (kbd "C-c c") 'org-capture)
+(global-set-key (kbd "C-c l") 'org-store-link)
 
 
-;; Global modes
+;; Enable global modes
 (server-mode 1)
 (desktop-save-mode 1)
 (size-indication-mode 1)
@@ -48,21 +67,36 @@
 (icomplete-mode 1)
 
 
-;; Hooks
+;; Add hooks
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
-(add-hook 'xwidget-webkit-mode-hook (lambda () (display-line-numbers-mode -1)))
-(add-hook 'org-mode-hook 'turn-on-auto-fill)
-(add-hook 'org-mode-hook 'flyspell-mode)
 (add-hook 'prog-mode-hook 'flyspell-prog-mode)
+(add-hook 'prog-mode-hook 'turn-on-auto-fill)
+(add-hook 'prog-mode-hook 'display-fill-column-indicator-mode)
+(add-hook 'text-mode-hook 'flyspell-mode)
+(add-hook 'xwidget-webkit-mode-hook (lambda () (display-line-numbers-mode -1)))
+
+
+;; Configure ispell
+(with-eval-after-load "ispell"
+  (setq ispell-program-name "hunspell")
+  (setq ispell-dictionary "en_GB,ru_RU,de_DE")
+  ;; ispell-set-spellchecker-params has to be called
+  ;; before ispell-hunspell-add-multi-dic will work
+  (ispell-set-spellchecker-params)
+  (ispell-hunspell-add-multi-dic "en_GB,ru_RU,de_DE")
+  ;; For saving words to the personal dictionary, don't infer it from
+  ;; the locale, otherwise it would save to ~/.hunspell_en_GB.
+  (setq ispell-personal-dictionary "~/.hunspell_personal"))
+
 
 ;; Packages
-(require 'use-package)
-
-(use-package gruvbox-theme
-  :ensure t
+(use-package modus-themes
+  :ensure
+  :init
+  (setq modus-themes-syntax '(faint alt-syntax))
+  (modus-themes-load-themes)
   :config
-  (load-theme 'gruvbox-light-hard t))
-
+  (modus-themes-load-operandi))
 
 (use-package magit
   :ensure t
@@ -75,9 +109,16 @@
   :mode (("README\\.md\\'" . gfm-mode))
   :init
   (setq markdown-command "markdown")
-  :hook ((markdown-mode . flyspell-mode)
-         (markdown-mode . turn-on-auto-fill)
-         (markdown-mode . display-fill-column-indicator-mode)))
+  :hook ((gfm-mode . turn-on-auto-fill)
+         (gfm-mode . display-fill-column-indicator-mode)))
+
+
+(use-package grip-mode
+  :ensure t
+  :commands grip-mode
+  :init
+  (load-file "~/.emacs.d/grip-mode-sensitive.el")
+  :hook (markdown-mode . grip-mode))
 
 (use-package terraform-mode
   :ensure t
@@ -86,8 +127,7 @@
 
 (use-package yaml-mode
   :ensure t
-  :commands yaml-mode
-  :hook (yaml-mode . display-fill-column-indicator-mode))
+  :commands yaml-mode)
 
 (use-package git-commit
   :ensure t
@@ -104,8 +144,7 @@
   :ensure t
   :init
   (setq rust-format-on-save t)
-  :commands rust-mode
-  :hook (rust-mode . display-fill-column-indicator-mode))
+  :commands rust-mode)
 
 (use-package which-key
   :ensure t
@@ -151,6 +190,9 @@
 
 (use-package graphviz-dot-mode
   :ensure t
+  :requires company-graphviz-dot
+  :init
+  (setq graphviz-dot-indent-width 4)
   :commands graphviz-dot-mode)
 
 (use-package csv-mode
@@ -169,7 +211,3 @@
   :ensure t
   :config
   (pinentry-start))
-(defun my-icomplete-styles ()
-  (setq-local completion-styles '(initials flex)))
-
-(add-hook 'icomplete-minibuffer-setup-hook 'my-icomplete-styles)
