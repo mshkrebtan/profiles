@@ -45,7 +45,9 @@
 (setq-default
  fill-column 80
  indent-tabs-mode nil
- js-indent-level 2)
+ js-indent-level 2
+ require-final-newline t
+)
 
 
 ;; Enable certain functions
