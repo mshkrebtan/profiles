@@ -22,10 +22,20 @@
  desktop-save 'if-exists
  ediff-split-window-function 'split-window-horizontally
  exec-path (append '("/usr/local/bin/") exec-path)
- mode-require-final-newline 'visit-save
- org-agenda-files '("~/org")
+ org-agenda-files '("~/org"
+                    "~/work")
+ org-agenda-show-all-dates nil
+ org-agenda-show-future-repeats 'next
+ org-agenda-span 'year
+ org-agenda-tags-column -80
  org-agenda-todo-list-sublevels nil
+ org-clock-idle-time 1
+ org-clock-persist t
+ org-default-notes-file "capture.org"
  org-goto-auto-isearch nil
+ org-log-into-drawer t
+ read-buffer-completion-ignore-case t
+ read-file-name-completion-ignore-case t
  save-interprogram-paste-before-kill t
  vc-follow-symlinks nil
  ring-bell-function 'ignore)
@@ -67,8 +77,13 @@
 (icomplete-mode 1)
 
 
+;; Set up hooks for clock persistence
+(org-clock-persistence-insinuate)
+
+
 ;; Add hooks
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
+(add-hook 'org-mode-hook 'turn-on-auto-fill)
 (add-hook 'prog-mode-hook 'flyspell-prog-mode)
 (add-hook 'prog-mode-hook 'turn-on-auto-fill)
 (add-hook 'prog-mode-hook 'display-fill-column-indicator-mode)
