@@ -183,7 +183,18 @@
 (use-package company
   :ensure t
   :init
-  (setq-default company-dabbrev-downcase nil)
+  (setq company-dabbrev-code-everywhere t
+        company-dabbrev-code-other-buffers t
+        company-dabbrev-code-modes '(prog-mode
+                                     batch-file-mode
+                                     csharp-mode
+                                     css-mode
+                                     erlang-mode
+                                     haskell-mode
+                                     jde-mode
+                                     lua-mode
+                                     python-mode
+                                     yaml-mode))
   :config
   (global-company-mode 1))
 
