@@ -7,7 +7,7 @@ LAUNCH_AGENTS_HOME = "${HOME}/Library"
 
 .PHONY: alacritty emacs zsh tmux launch_agents
 
-emacs_files := $(addprefix $(EMACS_HOME)/, custom.el early-init.el init.el quail-diktor.el use-package)
+emacs_files := $(addprefix $(EMACS_HOME)/, custom.el early-init.el init.el grip-mode-sensitive.el quail-diktor.el use-package)
 emacs : $(emacs_files)
 
 $(EMACS_HOME)/custom.el :
@@ -16,6 +16,8 @@ $(EMACS_HOME)/early-init.el :
 	ln -sf "${PWD}/emacs/.emacs.d/early-init.el" "$@"
 $(EMACS_HOME)/init.el :
 	ln -sf "${PWD}/emacs/.emacs.d/init.el" "$@"
+$(EMACS_HOME)/grip-mode-sensitive.el :
+	ln -sf "${PWD}/emacs/.emacs.d/grip-mode-sensitive.el" "$@"
 $(EMACS_HOME)/quail-diktor.el :  $(DIKTOR_HOME)/.emacs.d/quail-diktor.el
 	ln -sf "$(DIKTOR_HOME)/.emacs.d/quail-diktor.el" "$@"
 $(EMACS_HOME)/use-package :
