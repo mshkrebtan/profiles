@@ -140,7 +140,9 @@
 (use-package terraform-mode
   :ensure t
   :commands terraform-mode
-  :hook (terraform-mode . terraform-format-on-save-mode))
+  :hook (
+         (terraform-mode . terraform-format-on-save-mode)
+         (terraform-mode . turn-off-auto-fill)))
 
 (use-package yaml-mode
   :ensure t
