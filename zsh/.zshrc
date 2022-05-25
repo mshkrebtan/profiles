@@ -1,3 +1,8 @@
+# Set locale to UTF-8. Programs like Vim and Emacs will use LANG for encoding
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
+export LANGUAGE=en_US.UTF-8
+
 # Zsh completion
 # https://docs.brew.sh/Shell-Completion#configuring-completions-in-zsh
 if type brew &>/dev/null; then
@@ -39,11 +44,6 @@ alias l="ls -lpGh"
 # Set other env vars
 export SSH_AUTH_SOCK="${HOME}/.ssh/ssh-agent"
 
-# Set locale to UTF-8. Programs like Vim and Emacs will use LANG for encoding
-export LC_ALL=en_US.UTF-8
-export LANG=en_US.UTF-8
-export LANGUAGE=en_US.UTF-8
-
 # prevent several of the system-supplied programs (including tar) from giving
 # special meaning to ._* archive members
 export COPYFILE_DISABLE=1
@@ -52,10 +52,3 @@ export COPYFILE_DISABLE=1
 export GREP_OPTIONS='--color=auto'
 export GPG_TTY="$(tty)"
 export EDITOR=emacsclient
-
-# PATH
-export PATH="/usr/local/opt/openssl@1.1/bin:$PATH"
-
-# Teleport
-export TELEPORT_AUTH="okta"
-export TELEPORT_PROXY="teleport.internal.corp.traderepublic.com:443"
