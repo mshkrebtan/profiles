@@ -34,6 +34,7 @@
  org-default-notes-file "capture.org"
  org-goto-auto-isearch nil
  org-log-into-drawer t
+ org-startup-indented t
  read-buffer-completion-ignore-case t
  read-file-name-completion-ignore-case t
  save-interprogram-paste-before-kill t
@@ -91,7 +92,7 @@
 (add-hook 'prog-mode-hook 'display-fill-column-indicator-mode)
 (add-hook 'text-mode-hook 'flyspell-mode)
 (add-hook 'xwidget-webkit-mode-hook (lambda () (display-line-numbers-mode -1)))
-
+(add-hook 'rust-mode-hook (lambda () (setq  fill-column 100)))
 
 ;; Configure ispell
 (with-eval-after-load "ispell"
@@ -185,7 +186,8 @@
 (use-package company
   :ensure t
   :init
-  (setq company-dabbrev-code-everywhere t
+  (setq company-dabbrev-downcase nil
+        company-dabbrev-code-everywhere t
         company-dabbrev-code-other-buffers t
         company-dabbrev-code-modes '(prog-mode
                                      batch-file-mode
@@ -204,11 +206,14 @@
   :ensure t
   :requires (flycheck company)
   :init
-  (setq lsp-keymap-prefix "s-l")
-  (setq lsp-rust-server 'rust-analyzer)
+  (setq lsp-keymap-prefix "C-c l")
   :hook ((rust-mode . lsp)
          (lsp-mode . lsp-enable-which-key-integration))
   :commands lsp)
+
+(use-package lsp-ui
+  :ensure t
+  :commands lsp-ui-mode)
 
 (use-package json-mode
   :ensure t
@@ -241,3 +246,6 @@
   :ensure t
   :config
   (pinentry-start))
+
+(use-package vterm
+    :ensure t)
