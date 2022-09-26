@@ -10,7 +10,7 @@
 ;; Frame defaults
 (setq ns-use-proxy-icon nil)
 
-(add-to-list 'default-frame-alist '(fullscreen . maximized))
+(add-to-list 'initial-frame-alist '(fullscreen . maximized))
 (add-to-list 'default-frame-alist '(font . "JetBrains Mono-13"))
 (add-to-list 'default-frame-alist '(line-spacing . 0.2))
 

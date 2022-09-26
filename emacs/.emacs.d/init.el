@@ -17,7 +17,7 @@
  calendar-longitude 13.4
  calendar-location-name "Berlin, Germany"
  completion-styles '(flex)
- completions-format 'vertical
+ completions-format 'one-column
  confirm-kill-emacs 'yes-or-no-p
  desktop-save 'if-exists
  ediff-split-window-function 'split-window-horizontally
@@ -28,6 +28,7 @@
  org-agenda-show-future-repeats 'next
  org-agenda-span 'year
  org-agenda-tags-column -80
+ org-agenda-todo-ignore-scheduled t
  org-agenda-todo-list-sublevels nil
  org-clock-idle-time 1
  org-clock-persist t
@@ -37,9 +38,10 @@
  org-startup-indented t
  read-buffer-completion-ignore-case t
  read-file-name-completion-ignore-case t
+ring-bell-function 'ignore
  save-interprogram-paste-before-kill t
  vc-follow-symlinks nil
- ring-bell-function 'ignore)
+ what-cursor-show-names t)
 
 
 ;; Set defaults
@@ -52,8 +54,9 @@
 
 
 ;; Enable certain functions
-(put 'scroll-left 'disabled nil)
 (put 'dired-find-alternate-file 'disabled nil)
+(put 'narrow-to-region 'disabled nil)
+(put 'scroll-left 'disabled nil)
 
 
 ;; Set environment variables
@@ -166,11 +169,6 @@
   (setq rust-format-on-save t)
   :commands rust-mode)
 
-(use-package which-key
-  :ensure t
-  :config
-  (which-key-mode 1))
-
 (use-package flycheck
   :ensure t
   :init
@@ -207,8 +205,7 @@
   :requires (flycheck company)
   :init
   (setq lsp-keymap-prefix "C-c l")
-  :hook ((rust-mode . lsp)
-         (lsp-mode . lsp-enable-which-key-integration))
+  :hook ((rust-mode . lsp))
   :commands lsp)
 
 (use-package lsp-ui
@@ -248,4 +245,7 @@
   (pinentry-start))
 
 (use-package vterm
-    :ensure t)
+  :ensure t)
+
+(use-package typo
+  :ensure t)
