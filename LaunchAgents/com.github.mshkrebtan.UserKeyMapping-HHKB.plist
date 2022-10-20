@@ -3,7 +3,7 @@
 <plist version="1.0">
   <dict>
     <key>Label</key>
-    <string>com.github.mshkrebtan.UserKeyMapping</string>
+    <string>com.github.mshkrebtan.UserKeyMapping.HHKB</string>
     <key>ProgramArguments</key>
     <array>
       <string>/usr/bin/hidutil</string>
