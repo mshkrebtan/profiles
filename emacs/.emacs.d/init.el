@@ -22,6 +22,7 @@
  desktop-save 'if-exists
  ediff-split-window-function 'split-window-horizontally
  exec-path (append '("/usr/local/bin/") exec-path)
+ flyspell-issue-message-flag nil
  org-agenda-files '("~/org"
                     "~/work")
  org-agenda-show-all-dates nil
