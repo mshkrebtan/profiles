@@ -44,7 +44,8 @@ ring-bell-function 'ignore
  vc-follow-symlinks nil
  what-cursor-show-names t)
 
-(add-to-list 'grep-find-ignored-directories ".terraform")
+(with-eval-after-load "grep"
+  (add-to-list 'grep-find-ignored-directories ".terraform"))
 
 ;; Set defaults
 (setq-default
