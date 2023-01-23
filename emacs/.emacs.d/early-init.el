@@ -9,6 +9,7 @@
 
 ;; Frame defaults
 (setq ns-use-proxy-icon nil)
+(setq frame-resize-pixelwise t)
 
 (add-to-list 'initial-frame-alist '(fullscreen . maximized))
 (add-to-list 'default-frame-alist '(font . "JetBrains Mono-13"))
