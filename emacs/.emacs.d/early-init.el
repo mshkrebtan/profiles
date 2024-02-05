@@ -1,6 +1,3 @@
-;; Defer garbage collection further back in the startup process
-(setq gc-cons-threshold most-positive-fixnum)
-
 ;; Tab Bar customisations
 (setq tab-bar-show 1
       tab-bar-tab-hints t)
