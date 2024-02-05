@@ -97,6 +97,7 @@
 
 ;; Add hooks
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
+(add-hook 'conf-mode-hook (lambda () (setq indent-line-function 'insert-tab)))
 (add-hook 'org-mode-hook 'turn-on-auto-fill)
 (add-hook 'prog-mode-hook 'flyspell-prog-mode)
 (add-hook 'prog-mode-hook 'turn-on-auto-fill)
