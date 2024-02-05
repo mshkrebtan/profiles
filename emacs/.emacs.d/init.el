@@ -278,9 +278,10 @@
 
 (use-package vterm
   :ensure t
-  :configure
+  :config
   (setq vterm-buffer-name-string "vterm %s")
   (setq vterm-max-scrollback 10000)
+  :hook (vterm-mode . (lambda () (display-line-numbers-mode -1)))
   :commands vterm)
 
 (use-package typo
