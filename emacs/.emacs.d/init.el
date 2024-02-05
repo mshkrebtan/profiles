@@ -8,9 +8,9 @@
   (add-to-list 'load-path "~/.emacs.d/use-package")
   (require 'use-package))
 
-
 ;; Set global variables
 (setq
+ auto-save-file-name-transforms nil
  backup-by-copying-when-linked t
  backup-directory-alist '(("." . "~/.emacs.d/backup"))
  calendar-latitude 52.5
