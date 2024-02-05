@@ -6,3 +6,5 @@ user_pref("privacy.resistFingerprinting.letterboxing", false);
 user_pref("toolkit.legacyUserProfileCustomizations.stylesheets", true);
 user_pref("extensions.pocket.enabled", false);
 user_pref("webgl.disabled", false);
+user_pref("image.animation_mode", "once");
+user_pref("browser.urlbar.resultmenu.keyboardAccessible", false);
