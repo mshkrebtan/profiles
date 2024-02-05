@@ -6,9 +6,14 @@
 	program = gpg
 [user]
 	name = Maksim Shkrebtan
+	email = 3735044+mshkrebtan@users.noreply.github.com
 [core]
 	excludesfile = /Users/mshkrebtan/.gitignore_global
 [pull]
 	rebase = false
 [init]
 	defaultBranch = main
+[push]
+	default = current
+[alias]
+	delete-squashed = "!f() { local targetBranch=${1:-master} && git checkout -q $targetBranch && git branch --merged | grep -v \"\\*\" | xargs -n 1 git branch -d && git for-each-ref refs/heads/ \"--format=%(refname:short)\" | while read branch; do mergeBase=$(git merge-base $targetBranch $branch) && [[ $(git cherry $targetBranch $(git commit-tree $(git rev-parse $branch^{tree}) -p $mergeBase -m _)) == \"-\"* ]] && git branch -D $branch; done; }; f"
