@@ -34,6 +34,7 @@
  org-clock-idle-time 1
  org-clock-persist t
  org-default-notes-file "capture.org"
+ org-export-backends '(md)
  org-goto-auto-isearch nil
  org-log-into-drawer t
  org-startup-indented t
