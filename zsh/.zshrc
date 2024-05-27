@@ -17,6 +17,9 @@ autoload -Uz colors && colors
 autoload -Uz vcs_info
 autoload -Uz select-word-style && select-word-style bash
 autoload -Uz add-zsh-hook
+autoload -U edit-command-line
+zle -N edit-command-line
+bindkey '\C-x\C-e' edit-command-line
 
 # Set VCS Information and Tab-RS in PROMPT
 zstyle ':vcs_info:*' enable git
