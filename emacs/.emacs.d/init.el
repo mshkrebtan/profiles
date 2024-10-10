@@ -5,7 +5,6 @@
 (load-file "~/.emacs.d/quail-diktor.el")
 
 (eval-when-compile
-  (add-to-list 'load-path "~/.emacs.d/use-package")
   (require 'use-package))
 
 ;; Set global variables
@@ -22,6 +21,7 @@
  csv-separators '(";" "	")
  desktop-save 'if-exists
  ediff-split-window-function 'split-window-horizontally
+ exec-path (append '("/opt/homebrew/bin") exec-path)
  flyspell-issue-message-flag nil
  org-agenda-files '("~/org"
                     "~/work")
@@ -37,8 +37,7 @@
  org-export-backends '(md)
  org-goto-auto-isearch nil
  org-log-into-drawer t
- org-startup-indented t
- read-buffer-completion-ignore-case t
+  read-buffer-completion-ignore-case t
  read-file-name-completion-ignore-case t
  ring-bell-function 'ignore
  save-interprogram-paste-before-kill t
@@ -56,7 +55,6 @@
  require-final-newline t
 )
 
-
 ;; Enable certain functions
 (put 'dired-find-alternate-file 'disabled nil)
 (put 'narrow-to-region 'disabled nil)
@@ -64,9 +62,14 @@
 
 
 ;; Set environment variables
-(setenv "SSH_AUTH_SOCK" (expand-file-name "~/.ssh/ssh-agent"))
+;; (setenv "SSH_AUTH_SOCK" (expand-file-name "~/.ssh/ssh-agent"))
 (setenv "LANG" "en_GB.UTF-8")
+(setenv "PATH"
+        (concat
+         "/opt/homebrew/bin" path-separator
+         (getenv "PATH")))
 
+(add-to-list 'Info-directory-list' "/opt/homebrew/share/info")
 
 ;; Set key bindings
 (global-set-key "\C-c\C-z." 'browse-url-at-point)
@@ -109,28 +112,13 @@
 
 ;; Configure ispell
 (with-eval-after-load "ispell"
-  (setq ispell-program-name "hunspell")
-  (setq ispell-dictionary "en_GB,ru_RU,de_DE")
-  ;; ispell-set-spellchecker-params has to be called
-  ;; before ispell-hunspell-add-multi-dic will work
-  (ispell-set-spellchecker-params)
-  (ispell-hunspell-add-multi-dic "en_GB,ru_RU,de_DE")
-  ;; For saving words to the personal dictionary, don't infer it from
-  ;; the locale, otherwise it would save to ~/.hunspell_en_GB.
-  (setq ispell-personal-dictionary "~/.hunspell_personal"))
-
+  (setq ispell-program-name "/opt/homebrew/bin/hunspell")
+  (setq ispell-dictionary "en_GB"))
 
 (use-package magit
   :ensure t
   :bind (("C-x g" . magit-status)
          ("C-x M-g" . magit-dispatch)))
-
-(use-package treesit-auto
-  :ensure t
-  :config
-  (setq treesit-auto-install 'prompt)
-  (setq auto-mode-alist (rassq-delete-all 'yaml-ts-mode auto-mode-alist)))
-
 
 (use-package markdown-mode
   :ensure t
@@ -155,9 +143,10 @@
   :commands terraform-mode
   :config
   (setq terraform-format-on-save t)
-  :hook (
-         (terraform-mode . superword-mode)
-         (terraform-mode . turn-off-auto-fill)))
+  :hook
+  (terraform-mode . superword-mode)
+  (terraform-mode . turn-off-auto-fill)
+  (terraform-mode . (lambda () (display-fill-column-indicator-mode -1))))
 
 (use-package yaml-mode
   :ensure t
@@ -172,16 +161,9 @@
   :ensure t
   :commands indent-tools-minor-mode)
 
-(use-package git-commit
+(use-package git-modes
   :ensure t
-  :commands git-commit-mode
-  :config
-  (global-git-commit-mode t)
-  :hook (git-commit-setup . git-commit-turn-on-flyspell))
-
-(use-package gitignore-mode
-  :ensure t
-  :commands gitignore-mode)
+  :commands (gitignore-mode gitconfig-mode))
 
 (use-package rust-mode
   :ensure t
@@ -220,28 +202,6 @@
                                      yaml-ts-mode))
   :config
   (global-company-mode 1))
-
-(use-package lsp-mode
-  :ensure t
-  :requires (flycheck company)
-  :init
-  (setq lsp-keymap-prefix "C-c l"
-        lsp-terraform-ls-prefill-required-fields t)
-  :hook ((rust-mode . lsp-deferred)
-         (terraform-mode . lsp-deferred))
-  :commands (lsp lsp-deferred))
-
-(use-package lsp-ui
-  :ensure t
-  :commands lsp-ui-mode)
-
-(use-package helm-lsp
-  :ensure t
-  :commands helm-lsp-workspace-symbol)
-
-(use-package lsp-treemacs
-  :ensure t
-  :commands lsp-treemacs-errors-list)
 
 (use-package json-mode
   :ensure t
@@ -288,4 +248,14 @@
 (use-package typo
   :ensure t)
 
+(use-package modus-themes
+  :ensure t
+  :config
+  (load-theme 'modus-operandi-tinted 1))
+
+(use-package plantuml-mode
+  :ensure t
+  :commands plantuml-mode)
+
 (put 'narrow-to-page 'disabled nil)
+(put 'set-goal-column 'disabled nil)

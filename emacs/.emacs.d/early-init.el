@@ -1,6 +1,7 @@
 ;; Tab Bar customisations
 (setq tab-bar-show 1
-      tab-bar-tab-hints t)
+      tab-bar-tab-hints t
+      tab-bar-select-tab-modifiers '(super))
 
 ;; GUI modes
 (tool-bar-mode -1)
