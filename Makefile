@@ -5,10 +5,13 @@ TMUX_HOME = "${HOME}"
 ZDOTDIR = "${HOME}"
 LAUNCH_AGENTS_HOME = "${HOME}/Library"
 
-.PHONY: alacritty emacs zsh tmux launch_agents
+PHONY: alacritty emacs zsh tmux launch_agents git
 
 emacs_files := $(addprefix $(EMACS_HOME)/, custom.el early-init.el init.el grip-mode-sensitive.el quail-diktor.el use-package)
-emacs : $(emacs_files)
+
+hunspell_dictionaries := $(addprefix $(HOME)/Library/Spelling/, en_GB.aff en_GB.dic ru_RU.aff ru_RU.dic de_DE.aff de_DE.dic)
+
+emacs : $(emacs_files) $(hunspell_dictionaries)
 
 $(EMACS_HOME)/custom.el :
 	touch "$@"
@@ -24,6 +27,27 @@ $(EMACS_HOME)/use-package :
 	[ -d "$@" ] || git clone https://github.com/jwiegley/use-package.git "$@"
 $(DIKTOR_HOME)/.emacs.d/quail-diktor.el :
 	[ -f "$@" ] || git clone https://github.com/mshkrebtan/diktor.git "$(DIKTOR_HOME)"
+
+$(HOME)/Library/Spelling/en_GB.aff:
+	curl -fsSL https://cgit.freedesktop.org/libreoffice/dictionaries/plain/en/en_GB.aff -o "$@"
+$(HOME)/Library/Spelling/en_GB.dic:
+	curl -fsSL https://cgit.freedesktop.org/libreoffice/dictionaries/plain/en/en_GB.dic -o "$@"
+$(HOME)/Library/Spelling/ru_RU.aff:
+	curl -fsSL https://cgit.freedesktop.org/libreoffice/dictionaries/plain/ru_RU/ru_RU.aff -o "$@"
+$(HOME)/Library/Spelling/ru_RU.dic:
+	curl -fsSL https://cgit.freedesktop.org/libreoffice/dictionaries/plain/ru_RU/ru_RU.dic -o "$@"
+$(HOME)/Library/Spelling/de_DE.aff:
+	curl -fsSL https://cgit.freedesktop.org/libreoffice/dictionaries/plain/de/de_DE_frami.aff -o "$@"
+$(HOME)/Library/Spelling/de_DE.dic:
+	curl -fsSL https://cgit.freedesktop.org/libreoffice/dictionaries/plain/de/de_DE_frami.dic -o "$@"
+
+git_files := $(addprefix $(HOME)/, .gitconfig .gitignore_global)
+git : $(git_files)
+
+$(HOME)/.gitconfig:
+	ln -sf "${PWD}/git/.gitconfig" "$@"
+$(HOME)/.gitignore_global:
+	ln -sf "${PWD}/git/.gitignore_global" "$@"
 
 alacritty : $(ALACRITTY_HOME)
 $(ALACRITTY_HOME) :
@@ -42,4 +66,4 @@ launch_agents:
 		ln -sf "${PWD}/$${plist}" "$(LAUNCH_AGENTS_HOME)/$${plist}";\
 	done
 
-packages := direnv hunspell markdown ripgrep fd teleport kubeseal jq
+packages := cmake libtool direnv hunspell markdown ripgrep fd teleport kubeseal jq
