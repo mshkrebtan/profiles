@@ -9,7 +9,7 @@
       <string>/usr/bin/hidutil</string>
       <string>property</string>
       <string>--matching</string>
-      <string>{"ProductID":0x027e,"VendorID":0x05ac}</string>
+      <string>{"VendorID":0,"ProductID":0}</string>
       <string>--set</string>
       <string>{"UserKeyMapping":[{"HIDKeyboardModifierMappingSrc":0x7000000E7,"HIDKeyboardModifierMappingDst":0x7000000E4}, {"HIDKeyboardModifierMappingSrc":0x700000039,"HIDKeyboardModifierMappingDst":0x7000000E0}, {"HIDKeyboardModifierMappingSrc":0x7000000E0,"HIDKeyboardModifierMappingDst":0x700000039}]}</string>
     </array>
