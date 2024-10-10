@@ -9,11 +9,33 @@
 	email = 3735044+mshkrebtan@users.noreply.github.com
 [core]
 	excludesfile = /Users/mshkrebtan/.gitignore_global
-[pull]
-	rebase = false
-[init]
-	defaultBranch = main
+[remote]
+	# The remote to push to by default. Overrides branch.<name>.remote for
+	# all branches, and is overridden by branch.<name>.pushRemote for
+	# specific branches.
+	pushDefault = origin
 [push]
-	default = current
+	# If set to "true" assume --set-upstream on default push when no
+	# upstream tracking exists for the current branch; this option takes
+	# effect with push.default options simple, upstream, and current. It is
+	# useful if by default you want new branches to be pushed to the default
+	# remote (like the behavior of push.default=current) and you also want
+	# the upstream tracking to be set. Workflows most likely to benefit from
+	# this option are simple central workflows where all branches are
+	# expected to have the same name on the remote.
+	autoSetupRemote = true
+
+	# Defines the action git push should take if no refspec is given
+	# (whether from the command-line, config, or elsewhere). Different
+	# values are well-suited for specific workflows; for instance, in a
+	# purely central workflow (i.e. the fetch source is equal to the push
+	# destination), upstream is probably what you want.
+	#
+	# simple - push the current branch with the same name on the remote. If
+	# you are working on a centralized workflow (pushing to the same
+	# repository you pull from, which is typically origin), then you need to
+	# configure an upstream branch with the same name. This mode is the
+	# default since Git 2.0, and is the safest option suited for beginners.
+	default = simple
 [alias]
 	delete-squashed = "!f() { local targetBranch=${1:-master} && git checkout -q $targetBranch && git branch --merged | grep -v \"\\*\" | xargs -n 1 git branch -d && git for-each-ref refs/heads/ \"--format=%(refname:short)\" | while read branch; do mergeBase=$(git merge-base $targetBranch $branch) && [[ $(git cherry $targetBranch $(git commit-tree $(git rev-parse $branch^{tree}) -p $mergeBase -m _)) == \"-\"* ]] && git branch -D $branch; done; }; f"
