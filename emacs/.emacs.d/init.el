@@ -117,6 +117,9 @@
 
 (use-package magit
   :ensure t
+  :config
+  (transient-insert-suffix 'magit-push "p"
+    '("i" magit-push-implicitly))
   :bind (("C-x g" . magit-status)
          ("C-x M-g" . magit-dispatch)))
 
