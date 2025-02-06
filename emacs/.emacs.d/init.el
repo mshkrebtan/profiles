@@ -102,11 +102,11 @@
 ;; Add hooks
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 (add-hook 'conf-mode-hook (lambda () (setq indent-line-function 'insert-tab)))
-(add-hook 'org-mode-hook 'turn-on-auto-fill)
 (add-hook 'prog-mode-hook 'flyspell-prog-mode)
 (add-hook 'prog-mode-hook 'turn-on-auto-fill)
 (add-hook 'prog-mode-hook 'display-fill-column-indicator-mode)
 (add-hook 'text-mode-hook 'flyspell-mode)
+(add-hook 'text-mode-hook 'visual-line-mode)
 (add-hook 'xwidget-webkit-mode-hook (lambda () (display-line-numbers-mode -1)))
 (add-hook 'rust-mode-hook (lambda () (setq  fill-column 100)))
 
@@ -120,20 +120,15 @@
   :config
   (transient-insert-suffix 'magit-push "p"
     '("i" magit-push-implicitly))
-  :bind (("C-x g" . magit-status)
-         ("C-x M-g" . magit-dispatch)))
+  :init
+  (setq magit-define-global-key-bindings 'recommended))
 
 (use-package markdown-mode
   :ensure t
   :commands (markdown-mode gfm-mode)
   :mode (("README\\.md\\'" . gfm-mode))
   :init
-  (setq markdown-command "markdown")
-  :hook ((markdwon-mode . turn-on-auto-fill)
-         (markdown-mode . display-fill-column-indicator-mode)
-         (gfm-mode . turn-on-auto-fill)
-         (gfm-mode . display-fill-column-indicator-mode)))
-
+  (setq markdown-command "markdown"))
 
 (use-package grip-mode
   :ensure t
