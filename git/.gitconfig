@@ -1,9 +1,3 @@
-[commit]
-	gpgsign = true
-[tag]
-        gpgsign = true
-[gpg]
-	program = gpg
 [user]
 	name = Maksim Shkrebtan
 	email = 3735044+mshkrebtan@users.noreply.github.com
