@@ -10,7 +10,7 @@
 
 (add-to-list 'initial-frame-alist '(fullscreen . maximized))
 (add-to-list 'default-frame-alist '(font . "JetBrains Mono-12:antialias=none"))
-(add-to-list 'default-frame-alist '(line-spacing . 0.2))
+;; (add-to-list 'default-frame-alist '(line-spacing . 0.2))
 
 (add-to-list 'frameset-filter-alist '(ns-transparent-titlebar . :never))
 (add-to-list 'frameset-filter-alist '(ns-appearance . :never))

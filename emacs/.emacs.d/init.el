@@ -9,6 +9,7 @@
 
 ;; Set global variables
 (setq
+ use-package-verbose t
  auto-save-file-name-transforms nil
  backup-by-copying-when-linked t
  backup-directory-alist '(("." . "~/.emacs.d/backup"))
@@ -50,7 +51,6 @@
 ;; Set defaults
 (setq-default
  fill-column 80
- indent-tabs-mode nil
  js-indent-level 2
  require-final-newline t
 )
@@ -84,29 +84,29 @@
 
 
 ;; Enable global modes
-(server-mode 1)
-(desktop-save-mode 1)
-(size-indication-mode 1)
 (column-number-mode 1)
-(global-display-line-numbers-mode 1)
-(show-paren-mode 1)
-(electric-pair-mode 1)
 (delete-selection-mode 1)
+(desktop-save-mode 1)
+(electric-pair-mode 1)
+(global-display-line-numbers-mode 1)
 (icomplete-mode 1)
-
+(server-mode 1)
+(show-paren-mode 1)
+(size-indication-mode 1)
 
 ;; Set up hooks for clock persistence
 (org-clock-persistence-insinuate)
 
+;; Major-mode preferences
+(add-to-list 'major-mode-remap-alist '(yaml-mode . yaml-ts-mode))
 
 ;; Add hooks
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
-(add-hook 'conf-mode-hook (lambda () (setq indent-line-function 'insert-tab)))
-(add-hook 'org-mode-hook 'turn-on-auto-fill)
 (add-hook 'prog-mode-hook 'flyspell-prog-mode)
 (add-hook 'prog-mode-hook 'turn-on-auto-fill)
 (add-hook 'prog-mode-hook 'display-fill-column-indicator-mode)
 (add-hook 'text-mode-hook 'flyspell-mode)
+(add-hook 'text-mode-hook 'visual-line-mode)
 (add-hook 'xwidget-webkit-mode-hook (lambda () (display-line-numbers-mode -1)))
 (add-hook 'rust-mode-hook (lambda () (setq  fill-column 100)))
 
@@ -120,20 +120,17 @@
   :config
   (transient-insert-suffix 'magit-push "p"
     '("i" magit-push-implicitly))
-  :bind (("C-x g" . magit-status)
-         ("C-x M-g" . magit-dispatch)))
+  :init
+  (setq magit-define-global-key-bindings 'recommended)
+  :commands
+  magit)
 
 (use-package markdown-mode
   :ensure t
   :commands (markdown-mode gfm-mode)
   :mode (("README\\.md\\'" . gfm-mode))
   :init
-  (setq markdown-command "markdown")
-  :hook ((markdwon-mode . turn-on-auto-fill)
-         (markdown-mode . display-fill-column-indicator-mode)
-         (gfm-mode . turn-on-auto-fill)
-         (gfm-mode . display-fill-column-indicator-mode)))
-
+  (setq markdown-command "markdown"))
 
 (use-package grip-mode
   :ensure t
@@ -143,26 +140,17 @@
 
 (use-package terraform-mode
   :ensure t
-  :commands terraform-mode
   :config
   (setq terraform-format-on-save t)
   :hook
   (terraform-mode . superword-mode)
   (terraform-mode . turn-off-auto-fill)
-  (terraform-mode . (lambda () (display-fill-column-indicator-mode -1))))
+  (terraform-mode . (lambda () (display-fill-column-indicator-mode -1)))
+  (terraform-mode . (lambda () (setq imenu-sort-function nil))))
 
 (use-package yaml-mode
   :ensure t
   :commands yaml-mode)
-
-(use-package yaml-pro
-  :ensure t
-  :requires yaml
-  :hook (yaml-ts-mode . yaml-pro-ts-mode))
-
-(use-package indent-tools
-  :ensure t
-  :commands indent-tools-minor-mode)
 
 (use-package git-modes
   :ensure t
@@ -229,17 +217,6 @@
   :ensure t
   :commands jinja2-mode)
 
-(use-package highlight-indent-guides
-  :ensure t
-  :hook (
-         (yaml-mode . highlight-indent-guides-mode))
-         (yaml-ts-mode . highlight-indent-guides-mode))
-
-(use-package pinentry
-  :ensure t
-  :config
-  (pinentry-start))
-
 (use-package vterm
   :ensure t
   :config
@@ -249,16 +226,48 @@
   :commands vterm)
 
 (use-package typo
-  :ensure t)
+  :ensure t
+  :commands (typo-mode typo-global-mode)
+  )
 
 (use-package modus-themes
-  :ensure t
-  :config
-  (load-theme 'modus-operandi-tinted 1))
-
 (use-package plantuml-mode
   :ensure t
   :commands plantuml-mode)
 
-(put 'narrow-to-page 'disabled nil)
-(put 'set-goal-column 'disabled nil)
+(use-package treesit-fold
+  :ensure t
+  :init
+  (setq treesit-fold-line-count-show t)  ; Show line count in folded regions
+  (setq treesit-fold-line-count-format " <%d lines> ")
+  :config
+  (global-treesit-fold-mode 1)
+  (global-treesit-fold-indicators-mode 1))
+
+(use-package breadcrumb
+  :ensure t
+  :hook (yaml-ts-mode . breadcrumb-local-mode))
+
+(use-package lsp-mode
+  :ensure t
+  :init
+  ;; set prefix for lsp-command-keymap (few alternatives - "C-l", "C-c l")
+  (setq lsp-keymap-prefix "C-c l")
+  :hook (;; replace XXX-mode with concrete major-mode(e. g. python-mode)
+         (terraform-mode . lsp)
+         ;; if you want which-key integration
+         (lsp-mode . lsp-enable-which-key-integration))
+  :commands lsp)
+
+(use-package lsp-ui
+  :ensure t
+  :commands
+  lsp-ui-mode)
+
+;; optional if you want which-key integration
+(use-package which-key
+    :config
+    (which-key-mode))
+
+(use-package solarized-theme
+  :ensure t)
