@@ -20,10 +20,12 @@
  completions-format 'one-column
  confirm-kill-emacs 'yes-or-no-p
  csv-separators '(";" "	")
+ desktop-restore-frames nil
  desktop-save 'if-exists
  ediff-split-window-function 'split-window-horizontally
- exec-path (append '("/opt/homebrew/bin") exec-path)
+ exec-path (append '("~/.cargo/bin:/opt/homebrew/bin") exec-path)
  flyspell-issue-message-flag nil
+ frame-resize-pixelwise t
  org-agenda-files '("~/org"
                     "~/work")
  org-agenda-show-all-dates nil
@@ -38,7 +40,7 @@
  org-export-backends '(md)
  org-goto-auto-isearch nil
  org-log-into-drawer t
-  read-buffer-completion-ignore-case t
+ read-buffer-completion-ignore-case t
  read-file-name-completion-ignore-case t
  ring-bell-function 'ignore
  save-interprogram-paste-before-kill t
@@ -66,6 +68,7 @@
 (setenv "LANG" "en_GB.UTF-8")
 (setenv "PATH"
         (concat
+	 "~/.cargo/bin" path-separator
          "/opt/homebrew/bin" path-separator
          (getenv "PATH")))
 
@@ -114,6 +117,9 @@
 (with-eval-after-load "ispell"
   (setq ispell-program-name "/opt/homebrew/bin/hunspell")
   (setq ispell-dictionary "en_GB"))
+
+(use-package solarized-theme
+  :ensure t)
 
 (use-package magit
   :ensure t
@@ -230,7 +236,6 @@
   :commands (typo-mode typo-global-mode)
   )
 
-(use-package modus-themes
 (use-package plantuml-mode
   :ensure t
   :commands plantuml-mode)
@@ -253,11 +258,17 @@
   :init
   ;; set prefix for lsp-command-keymap (few alternatives - "C-l", "C-c l")
   (setq lsp-keymap-prefix "C-c l")
+  (setq lsp-disabled-clients '(tfls))
+  (setq lsp-semantic-tokens-enable t)
+  (setq lsp-semantic-tokens-honor-refresh-requests t)
+  (setq lsp-enable-links t)
+  (setq lsp-format-buffer-on-save t)
   :hook (;; replace XXX-mode with concrete major-mode(e. g. python-mode)
-         (terraform-mode . lsp)
+         (terraform-mode . lsp-deferred)
+	 (toml-mode . lsp-deferred)
          ;; if you want which-key integration
          (lsp-mode . lsp-enable-which-key-integration))
-  :commands lsp)
+  :commands (lsp lsp-defrred))
 
 (use-package lsp-ui
   :ensure t
@@ -268,6 +279,3 @@
 (use-package which-key
     :config
     (which-key-mode))
-
-(use-package solarized-theme
-  :ensure t)
