@@ -5,7 +5,7 @@ TMUX_HOME = "${HOME}"
 ZDOTDIR = "${HOME}"
 LAUNCH_AGENTS_HOME = "${HOME}/Library"
 
-PHONY: alacritty emacs zsh tmux launch_agents git
+PHONY: alacritty emacs zsh tmux launch_agents git keybindings
 
 emacs_files := $(addprefix $(EMACS_HOME)/, custom.el early-init.el init.el grip-mode-sensitive.el quail-diktor.el use-package)
 
@@ -27,6 +27,11 @@ $(EMACS_HOME)/use-package :
 	[ -d "$@" ] || git clone https://github.com/jwiegley/use-package.git "$@"
 $(DIKTOR_HOME)/.emacs.d/quail-diktor.el :
 	[ -f "$@" ] || git clone https://github.com/mshkrebtan/diktor.git "$(DIKTOR_HOME)"
+
+keybindings : $(HOME)/Library/KeyBindings/DefaultKeyBinding.dict
+$(HOME)/Library/KeyBindings/DefaultKeyBinding.dict:
+	mkdir -p "${HOME}/KeyBindings"
+	curl -fsSL https://raw.githubusercontent.com/mshkrebtan/cocoa-text-system/refs/heads/master/KeyBindings/Emacs%20Opt%20Bindings.dict -o "$@"
 
 $(HOME)/Library/Spelling/en_GB.aff:
 	curl -fsSL https://cgit.freedesktop.org/libreoffice/dictionaries/plain/en/en_GB.aff -o "$@"
