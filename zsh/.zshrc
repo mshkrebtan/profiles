@@ -61,6 +61,7 @@ export EDITOR=emacsclient
 alias e='emacsclient -n'
 alias k='kubectl'
 alias tf='terraform'
+alias gunits='gunits -d max'
 
 # OpenJDK
 PATH="/opt/homebrew/opt/openjdk/bin:${PATH}"
