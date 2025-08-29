@@ -76,4 +76,7 @@ PATH="${PATH}:${HOME}/.rd/bin"
 # MacTeX
 PATH="${PATH}:/usr/local/texlive/2024/bin/universal-darwin"
 
+# Cargo
+PATH="$HOME/.cargo/bin:$PATH"
+
 export PATH
