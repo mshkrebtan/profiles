@@ -1,11 +1,21 @@
 ;; Load additional files
 (setq custom-file "~/.emacs.d/custom.el")
 (load custom-file)
-
 (load-file "~/.emacs.d/quail-diktor.el")
+(load-file "~/.emacs.d/fringe-scale.el")
+
+
+(set-fringe-mode 16)
+(require 'fringe-scale)
+(fringe-scale-setup)
+
+
+(load-theme 'modus-operandi-tinted)
+
 
 (eval-when-compile
   (require 'use-package))
+
 
 ;; Set global variables
 (setq
@@ -20,12 +30,14 @@
  completions-format 'one-column
  confirm-kill-emacs 'yes-or-no-p
  csv-separators '(";" "	")
+ enable-recursive-minibuffers t
  desktop-restore-frames nil
  desktop-save 'if-exists
  ediff-split-window-function 'split-window-horizontally
  exec-path (append '("~/.cargo/bin:/opt/homebrew/bin") exec-path)
  flyspell-issue-message-flag nil
  frame-resize-pixelwise t
+ minibuffer-prompt-properties '(read-only t cursor-intangible t face minibuffer-prompt)
  org-agenda-files '("~/org"
                     "~/work")
  org-agenda-show-all-dates nil
@@ -40,10 +52,18 @@
  org-export-backends '(md)
  org-goto-auto-isearch nil
  org-log-into-drawer t
+ project-mode-line t
  read-buffer-completion-ignore-case t
+ ;; Hide commands in M-x which do not apply to the current mode.  Corfu
+ ;; commands are hidden, since they are not used via M-x. This setting is
+ ;; useful beyond Corfu.
+ read-extended-command-predicate #'command-completion-default-include-p
  read-file-name-completion-ignore-case t
  ring-bell-function 'ignore
  save-interprogram-paste-before-kill t
+ ;; Emacs 30 and newer: Disable Ispell completion function.
+ ;; Try `cape-dict' as an alternative.
+ text-mode-ispell-word-completion nil
  vc-follow-symlinks nil
  what-cursor-show-names t)
 
@@ -85,9 +105,9 @@
 (global-set-key (kbd "C-c c") 'org-capture)
 (global-set-key (kbd "C-c l") 'org-store-link)
 
-
 ;; Enable global modes
 (column-number-mode 1)
+(context-menu-mode t)
 (delete-selection-mode 1)
 (desktop-save-mode 1)
 (electric-pair-mode 1)
@@ -138,6 +158,16 @@
   :init
   (setq markdown-command "markdown"))
 
+(use-package markdown-ts-mode
+  :ensure t
+  :commands (markdown-ts-mode)
+  :init
+  (add-to-list 'treesit-language-source-alist '(markdown "https://github.com/tree-sitter-grammars/tree-sitter-markdown" "v0.4.1" "tree-sitter-markdown/src"))
+  (add-to-list 'treesit-language-source-alist '(markdown-inline "https://github.com/tree-sitter-grammars/tree-sitter-markdown" "v0.4.1" "tree-sitter-markdown-inline/src"))
+  ;; (treesit-install-language-grammar 'markdown)
+  ;; (treesit-install-language-grammar 'markdown-inline)
+  (add-to-list 'major-mode-remap-alist '(markdown-mode . markdown-ts-mode)))
+
 (use-package grip-mode
   :ensure t
   :commands grip-mode
@@ -152,11 +182,22 @@
   (terraform-mode . superword-mode)
   (terraform-mode . turn-off-auto-fill)
   (terraform-mode . (lambda () (display-fill-column-indicator-mode -1)))
-  (terraform-mode . (lambda () (setq imenu-sort-function nil))))
+  (terraform-mode . (lambda () (setq imenu-sort-function nil)))
+  :commands
+  terraform-mode)
 
 (use-package yaml-mode
   :ensure t
   :commands yaml-mode)
+
+(use-package yaml-ts-mode
+  :ensure t
+  :commands yaml-ts-mode
+  :init
+  (add-to-list 'major-mode-remap-alist '(yaml-mode . yaml-ts-mode))
+  (add-to-list 'treesit-language-source-alist '(yaml "https://github.com/tree-sitter-grammars/tree-sitter-yaml"))
+  ;; (treesit-install-language-grammar 'yaml)
+  )
 
 (use-package git-modes
   :ensure t
@@ -171,7 +212,6 @@
 (use-package flycheck
   :ensure t
   :init
-  (setq flycheck-check-syntax-automatically '(mode-enabled save))
   :config
   (global-flycheck-mode 1))
 
@@ -180,25 +220,77 @@
   :requires flycheck
   :hook (rust-mode . flycheck-rust-setup))
 
-(use-package company
+(use-package corfu
   :ensure t
+  ;; Optional customizations
+  ;; :custom
+  ;; (corfu-cycle t)                ;; Enable cycling for `corfu-next/previous'
+  ;; (corfu-quit-at-boundary nil)   ;; Never quit at completion boundary
+  ;; (corfu-quit-no-match nil)      ;; Never quit, even if there is no match
+  ;; (corfu-preview-current nil)    ;; Disable current candidate preview
+  ;; (corfu-preselect 'prompt)      ;; Preselect the prompt
+  ;; (corfu-on-exact-match nil)     ;; Configure handling of exact matches
+
+  ;; Enable Corfu only for certain modes. See also `global-corfu-modes'.
+  ;; :hook ((prog-mode . corfu-mode)
+  ;;        (shell-mode . corfu-mode)
+  ;;        (eshell-mode . corfu-mode))
+
   :init
-  (setq company-dabbrev-downcase nil
-        company-dabbrev-code-everywhere t
-        company-dabbrev-code-other-buffers t
-        company-dabbrev-code-modes '(prog-mode
-                                     batch-file-mode
-                                     csharp-mode
-                                     css-mode
-                                     erlang-mode
-                                     haskell-mode
-                                     jde-mode
-                                     lua-mode
-                                     python-mode
-                                     yaml-mode
-                                     yaml-ts-mode))
+;; Enable auto completion and configure quitting
+  (setq corfu-auto t
+      corfu-quit-no-match 'separator) ;; or t
+
   :config
-  (global-company-mode 1))
+  ;; Recommended: Enable Corfu globally.  Recommended since many modes provide
+  ;; Capfs and Dabbrev can be used globally (M-/).  See also the customization
+  ;; variable `global-corfu-modes' to exclude certain modes.
+  (global-corfu-mode)
+
+  ;; Enable optional extension modes:
+  ;; (corfu-history-mode)
+  ;; (corfu-popupinfo-mode)
+  )
+
+;; Use Dabbrev with Corfu!
+;; (use-package dabbrev
+;;   ;; Swap M-/ and C-M-/
+;;   :bind (("M-/" . dabbrev-completion)
+;;          ("C-M-/" . dabbrev-expand))
+;;   :config
+;;   (add-to-list 'dabbrev-ignored-buffer-regexps "\\` ")
+;;   ;; Available since Emacs 29 (Use `dabbrev-ignored-buffer-regexps' on older Emacs)
+;;   (add-to-list 'dabbrev-ignored-buffer-modes 'authinfo-mode)
+;;   (add-to-list 'dabbrev-ignored-buffer-modes 'doc-view-mode)
+;;   (add-to-list 'dabbrev-ignored-buffer-modes 'pdf-view-mode)
+;;   (add-to-list 'dabbrev-ignored-buffer-modes 'tags-table-mode))
+
+(use-package cape
+  :ensure t
+  ;; Bind prefix keymap providing all Cape commands under a mnemonic key.
+  ;; Press C-c p ? to for help.
+  :bind ("C-c p" . cape-prefix-map) ;; Alternative key: M-<tab>, M-p, M-+
+  ;; Alternatively bind Cape commands individually.
+  ;; :bind (("C-c p d" . cape-dabbrev)
+  ;;        ("C-c p h" . cape-history)
+  ;;        ("C-c p f" . cape-file)
+  ;;        ...)
+  :hook
+  ;; Add to the global default value of `completion-at-point-functions' which is
+  ;; used by `completion-at-point'.  The order of the functions matters, the
+  ;; first function returning a result wins.  Note that the list of buffer-local
+  ;; completion functions takes precedence over the global list.
+  (completion-at-point-functions . cape-dabbrev)
+  (completion-at-point-functions . cape-file)
+  (completion-at-point-functions . cape-elisp-block)
+  ;; (completion-at-point-functions . cape-history)
+  ;; ...
+  )
+
+;; (use-package vertico
+;;   :ensure t
+;;   :init
+;;   (vertico-mode))
 
 (use-package json-mode
   :ensure t
@@ -246,25 +338,30 @@
   (setq treesit-fold-line-count-show t)  ; Show line count in folded regions
   (setq treesit-fold-line-count-format " <%d lines> ")
   :config
-  (global-treesit-fold-mode 1)
   (global-treesit-fold-indicators-mode 1))
 
-(use-package breadcrumb
-  :ensure t
-  :hook (yaml-ts-mode . breadcrumb-local-mode))
+;; (use-package breadcrumb
+;;   :ensure t
+;;   :hook (yaml-ts-mode . breadcrumb-local-mode))
 
 (use-package lsp-mode
   :ensure t
   :init
   ;; set prefix for lsp-command-keymap (few alternatives - "C-l", "C-c l")
   (setq lsp-keymap-prefix "C-c l")
+  (setq lsp-completion-provider :none) ;; we use Corfu!
   (setq lsp-disabled-clients '(tfls))
   (setq lsp-semantic-tokens-enable t)
   (setq lsp-semantic-tokens-honor-refresh-requests t)
   (setq lsp-enable-links t)
   (setq lsp-format-buffer-on-save t)
+  (setq lsp-yaml-format-enable nil)
+  (defun my/lsp-mode-setup-completion ()
+  (setf (alist-get 'styles (alist-get 'lsp-capf completion-category-defaults))
+          '(flex))) ;; Configure flex
   :hook (;; replace XXX-mode with concrete major-mode(e. g. python-mode)
-         (terraform-mode . lsp-deferred)
+         (lsp-completion-mode . my/lsp-mode-setup-completion)
+;; (terraform-mode . lsp-deferred)
 	 (toml-mode . lsp-deferred)
          ;; if you want which-key integration
          (lsp-mode . lsp-enable-which-key-integration))
