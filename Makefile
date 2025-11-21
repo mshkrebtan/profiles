@@ -4,7 +4,7 @@ ALACRITTY_HOME = "${HOME}/.config/alacritty"
 TMUX_HOME = "${HOME}"
 ZDOTDIR = "${HOME}"
 
-PHONY: alacritty emacs zsh tmux git keybindings
+.PHONY: defaults keybindings zsh git emacs alacritty tmux
 
 emacs_files := $(addprefix $(EMACS_HOME)/, custom.el early-init.el init.el grip-mode-sensitive.el quail-diktor.el use-package)
 
@@ -66,3 +66,6 @@ $(TMUX_HOME)/.tmux.conf :
 	ln -sf "${PWD}/tmux/.tmux.conf" "$@"
 
 packages := cmake libtool direnv hunspell markdown ripgrep fd teleport kubeseal jq
+
+defaults:
+	defaults -currentHost import -g "defaults/${USER}.plist"

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+  <!-- USAGE: defaults -currentHost import -g defaults.plist -->
+  <dict>
+    <!-- Modifier mapping for the Cherry KW 300MX keyboard -->
+    <!-- To verify, run: defaults -currentHost read -g com.apple.keyboard.modifiermapping.1671-473-0 -->
+    <!-- SEE: https://developer.apple.com/library/archive/technotes/tn2450/_index.html -->
+    <!-- SEE: https://hidutil-generator.netlify.app/ -->
+    <!-- SEE: https://apple.stackexchange.com/questions/4813/changing-modifier-keys-from-the-command-line/277544#277544/ -->
+    <!-- SEE: https://apple.stackexchange.com/questions/13598/updating-modifier-key-mappings-through-defaults-command-tool -->
+    <key>com.apple.keyboard.modifiermapping.1671-473-0</key>
+    <array>
+      <!-- Remap Right Control to Right Alt -->
+      <dict>
+        <key>HIDKeyboardModifierMappingSrc</key>
+        <integer>0x7000000e4</integer>
+        <key>HIDKeyboardModifierMappingDst</key>
+        <integer>0x7000000e6</integer>
+      </dict>
+    </array>
+  </dict>
+</plist>
