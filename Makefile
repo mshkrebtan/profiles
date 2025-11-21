@@ -3,9 +3,8 @@ DIKTOR_HOME = "${HOME}/.config/diktor"
 ALACRITTY_HOME = "${HOME}/.config/alacritty"
 TMUX_HOME = "${HOME}"
 ZDOTDIR = "${HOME}"
-LAUNCH_AGENTS_HOME = "${HOME}/Library"
 
-PHONY: alacritty emacs zsh tmux launch_agents git keybindings
+PHONY: alacritty emacs zsh tmux git keybindings
 
 emacs_files := $(addprefix $(EMACS_HOME)/, custom.el early-init.el init.el grip-mode-sensitive.el quail-diktor.el use-package)
 
@@ -65,10 +64,5 @@ $(ZDOTDIR)/.zshrc :
 tmux : $(TMUX_HOME)/.tmux.conf
 $(TMUX_HOME)/.tmux.conf :
 	ln -sf "${PWD}/tmux/.tmux.conf" "$@"
-
-launch_agents:
-	for plist in LaunchAgents/*; do\
-		ln -sf "${PWD}/$${plist}" "$(LAUNCH_AGENTS_HOME)/$${plist}";\
-	done
 
 packages := cmake libtool direnv hunspell markdown ripgrep fd teleport kubeseal jq
