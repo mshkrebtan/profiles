@@ -29,7 +29,7 @@ $(DIKTOR_HOME)/.emacs.d/quail-diktor.el :
 
 keybindings : $(HOME)/Library/KeyBindings/DefaultKeyBinding.dict
 $(HOME)/Library/KeyBindings/DefaultKeyBinding.dict:
-	mkdir -p "${HOME}/KeyBindings"
+	mkdir -p "${HOME}/Library/KeyBindings"
 	curl -fsSL https://raw.githubusercontent.com/mshkrebtan/cocoa-text-system/refs/heads/master/KeyBindings/Emacs%20Opt%20Bindings.dict -o "$@"
 
 $(HOME)/Library/Spelling/en_GB.aff:
